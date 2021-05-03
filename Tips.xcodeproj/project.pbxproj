@@ -29,8 +29,6 @@
 		4B8F9F5B24A8745100E25020 /* EditTipPercentagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8F9F5A24A8745100E25020 /* EditTipPercentagesView.swift */; };
 		4B8F9F5D24A8791C00E25020 /* EditTipPercentagesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8F9F5C24A8791C00E25020 /* EditTipPercentagesCell.swift */; };
 		4BB05FA1248608EA005C0C01 /* BillAmountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB05FA0248608EA005C0C01 /* BillAmountView.swift */; };
-		4BBB454F24F7528E00BC9197 /* AdvancedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BBB454E24F7528E00BC9197 /* AdvancedButton.swift */; };
-		4BBB455124F7594200BC9197 /* AdvancedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BBB455024F7594200BC9197 /* AdvancedView.swift */; };
 		4BC7AE15249F13BD0038A90F /* TipViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC7AE14249F13BD0038A90F /* TipViewModelTests.swift */; };
 		4BCF89B324EAF21A00349206 /* LoadAdMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCF89B224EAF21A00349206 /* LoadAdMonitor.swift */; };
 		4BDE9A0F24885F03006B78D8 /* AmountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDE9A0E24885F03006B78D8 /* AmountViewModel.swift */; };
@@ -95,8 +93,6 @@
 		4B8F9F5A24A8745100E25020 /* EditTipPercentagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTipPercentagesView.swift; sourceTree = "<group>"; };
 		4B8F9F5C24A8791C00E25020 /* EditTipPercentagesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTipPercentagesCell.swift; sourceTree = "<group>"; };
 		4BB05FA0248608EA005C0C01 /* BillAmountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillAmountView.swift; sourceTree = "<group>"; };
-		4BBB454E24F7528E00BC9197 /* AdvancedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedButton.swift; sourceTree = "<group>"; };
-		4BBB455024F7594200BC9197 /* AdvancedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedView.swift; sourceTree = "<group>"; };
 		4BC7AE14249F13BD0038A90F /* TipViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipViewModelTests.swift; sourceTree = "<group>"; };
 		4BCF89B224EAF21A00349206 /* LoadAdMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadAdMonitor.swift; sourceTree = "<group>"; };
 		4BDE9A0E24885F03006B78D8 /* AmountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountViewModel.swift; sourceTree = "<group>"; };
@@ -264,7 +260,6 @@
 				4B0A9FFD24E9961100D150B2 /* CalculationsCellView.swift */,
 				4B552DE8247B80CA00CF15D8 /* ContentView.swift */,
 				4B14BB2924E5ABD30036C198 /* GoogleAdView.swift */,
-				4BBB455224F759B400BC9197 /* AdvancedView */,
 				4B8F9F5E24A879E000E25020 /* EditTipPercentages */,
 				4BBB455324F759D200BC9197 /* TipPercentage */,
 			);
@@ -278,15 +273,6 @@
 				4B8F9F5C24A8791C00E25020 /* EditTipPercentagesCell.swift */,
 			);
 			path = EditTipPercentages;
-			sourceTree = "<group>";
-		};
-		4BBB455224F759B400BC9197 /* AdvancedView */ = {
-			isa = PBXGroup;
-			children = (
-				4BBB454E24F7528E00BC9197 /* AdvancedButton.swift */,
-				4BBB455024F7594200BC9197 /* AdvancedView.swift */,
-			);
-			path = AdvancedView;
 			sourceTree = "<group>";
 		};
 		4BBB455324F759D200BC9197 /* TipPercentage */ = {
@@ -582,7 +568,6 @@
 				4BEDB40F2496DF0F005F3892 /* CurrencySpelledOut.swift in Sources */,
 				4B552DE5247B80CA00CF15D8 /* AppDelegate.swift in Sources */,
 				4B146C1A24AE08FE0093CF56 /* UIApplication+Extensions.swift in Sources */,
-				4BBB454F24F7528E00BC9197 /* AdvancedButton.swift in Sources */,
 				4B146C2224AE276C0093CF56 /* ClearTextFieldModifier.swift in Sources */,
 				4B552DE7247B80CA00CF15D8 /* SceneDelegate.swift in Sources */,
 				4BDE9A1924893F51006B78D8 /* TipViewModel.swift in Sources */,
@@ -592,7 +577,6 @@
 				4BED9107247CED640026A4AD /* Double+Extensions.swift in Sources */,
 				4B4330042480AD8600CFA163 /* String+Extensions.swift in Sources */,
 				4BDE9A13248891B8006B78D8 /* TipPercentageSegmentView.swift in Sources */,
-				4BBB455124F7594200BC9197 /* AdvancedView.swift in Sources */,
 				4BDE9A0F24885F03006B78D8 /* AmountViewModel.swift in Sources */,
 				4BB05FA1248608EA005C0C01 /* BillAmountView.swift in Sources */,
 				4B0AA00024E99A1500D150B2 /* TipPercentageCell.swift in Sources */,

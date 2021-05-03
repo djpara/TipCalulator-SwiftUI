@@ -19,7 +19,6 @@ struct ContentView: View {
     @State var selectedTipPercentage = 0.0
 
     var currencyFormatter = NumberFormatter.makeCurrencyFormatter(using: .current)
-    var advancedDestinationView = AdvancedView()
     
     init(amountViewModel: AmountViewModel, tipListViewModel: TipListViewModel) {
         self.amountViewModel = amountViewModel
@@ -41,7 +40,6 @@ struct ContentView: View {
                     CalculateTotalButton(selectedTipPercentage: $selectedTipPercentage,
                                          amountViewModel: amountViewModel,
                                          currencyFormatter: currencyFormatter)
-//                    AdvancedButton(destination: advancedDestinationView)
                 }.navigationBarTitle("Tips")
                 .buttonStyle(PlainButtonStyle())
             }.navigationViewStyle(StackNavigationViewStyle())
@@ -59,3 +57,13 @@ struct ContentView: View {
         }
     }
 }
+
+#if DEBUG
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        let amountViewModel = AmountViewModel(totalAmount: "$20.00",
+                                              currencyFormatter: .makeCurrencyFormatter(using: .current))
+        return ContentView(amountViewModel: amountViewModel, tipListViewModel: TipListViewModel())
+    }
+}
+#endif
