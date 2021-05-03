@@ -25,4 +25,8 @@ extension String {
     func convertCurrencyToDouble(using currencyFormatter: NumberFormatter) -> Double {
         return currencyFormatter.number(from: self)?.doubleValue ?? 0
     }
+    
+    func isAlphanumeric() -> Bool {
+        return self.rangeOfCharacter(from: CharacterSet.alphanumerics.inverted) == nil && self != ""
+    }
 }

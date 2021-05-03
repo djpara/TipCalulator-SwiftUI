@@ -11,6 +11,8 @@ import SwiftUI
 struct EditTipPercentagesView: View {
     @Binding var isPresented: Bool
     
+    var userDefaults = UserDefaults.standard
+    
     var tipListViewModel: TipListViewModel
     var tipOptions: [TipViewModel] = []
     
@@ -19,6 +21,23 @@ struct EditTipPercentagesView: View {
         self.tipListViewModel = tipListViewModel
         
         tipOptions = tipListViewModel.tipOptions.map { TipViewModel(tipPercentage: $0.tipPercentage) }
+    }
+    
+    private func saveTipOptionsToUserDefaults() {
+        for (counter, tipOption) in tipOptions.enumerated() {
+            var option: TipListViewModel.Option
+            
+            switch counter {
+            case 1:
+                option = .second
+            case 2:
+                option = .third
+            default:
+                option = .first
+            }
+            
+            userDefaults.set(tipOption.tipPercentage, forKey: option.rawValue)
+        }
     }
 
     var body: some View {
@@ -34,13 +53,14 @@ struct EditTipPercentagesView: View {
                     UIApplication.closeAllKeyboards(.shared)
                     self.tipListViewModel.tipOptions = self.tipOptions
                     self.isPresented = false
+                    self.saveTipOptionsToUserDefaults()
                 }, label: {
                     Text("Save")
                 }))
                 .onAppear {
                     UITableView.appearance().tableFooterView = UIView()
             }
-        }
+        }.navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

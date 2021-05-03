@@ -13,9 +13,9 @@ struct ClearTextFieldModifier: ViewModifier {
         content
             .keyboardType(.numberPad)
             .foregroundColor(.clear)
-            .accentColor(.clear)
-            .multilineTextAlignment(.center)
+            .accentColor(.black)
+            .multilineTextAlignment(.trailing)
             .font(.title)
-            .padding(20)
+            .padding(10)
     }
 }

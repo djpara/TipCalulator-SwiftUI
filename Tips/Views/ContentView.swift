@@ -9,52 +9,53 @@
 import SwiftUI
 
 struct ContentView: View {
-    @ObservedObject var totalViewModel: TotalViewModel
-    @ObservedObject var tipListViewModel = TipListViewModel()
+    @ObservedObject var amountViewModel: AmountViewModel
+    @ObservedObject var tipListViewModel: TipListViewModel
+    @ObservedObject var loadAdMonitor = LoadAdMonitor(bannerView: GoogleAdView())
     
     @State private var showEditTipPercentage = false
-    @State private var selectedTipPercentage = 18.0
+    @State private var showAdvancedView = false
     
+    @State var selectedTipPercentage = 0.0
+
     var currencyFormatter = NumberFormatter.makeCurrencyFormatter(using: .current)
+    var advancedDestinationView = AdvancedView()
+    
+    init(amountViewModel: AmountViewModel, tipListViewModel: TipListViewModel) {
+        self.amountViewModel = amountViewModel
+        self.tipListViewModel = tipListViewModel
+    }
     
     var body: some View {
-        NavigationView {
-            List {
-                TotalCellView(total: totalViewModel.amount,
-                              totalViewModel: totalViewModel,
-                              currencyFormatter: currencyFormatter)
-                HStack {
-                    TipPercentageCellView(tipListViewModel: tipListViewModel,
-                                          selectedTipPercentage: $selectedTipPercentage)
-                    Button(action: {
-                            self.showEditTipPercentage = true
-                        }) {
-                            Image(systemName: "pencil")
-                                .foregroundColor(.gray)
-                    }
-                }
-                CalculateTotalButton(totalViewModel: totalViewModel,
-                                     selectedTipPercentage: selectedTipPercentage,
-                                     currencyFormatter: currencyFormatter)
-            }.navigationBarTitle("Tips")
-                .onAppear {
-                    UITableView.appearance().separatorStyle = .none
-                    UITableView.appearance().tableFooterView = UIView()
-            }
+        VStack {
+            NavigationView {
+                List {
+                    BillAmountView(total: amountViewModel.originalAmount,
+                                   amountViewModel: amountViewModel,
+                                   currencyFormatter: currencyFormatter)
+                    CalculationsCellView(amountViewModel: amountViewModel,
+                                         currencyFormatter: currencyFormatter)
+                    TipPercentageCell(tipListViewModel: tipListViewModel,
+                                      selectedTipPercentage: $selectedTipPercentage,
+                                      showEditTipPercentage: $showEditTipPercentage)
+                    CalculateTotalButton(selectedTipPercentage: $selectedTipPercentage,
+                                         amountViewModel: amountViewModel,
+                                         currencyFormatter: currencyFormatter)
+//                    AdvancedButton(destination: advancedDestinationView)
+                }.navigationBarTitle("Tips")
+                .buttonStyle(PlainButtonStyle())
+            }.navigationViewStyle(StackNavigationViewStyle())
+            .sheet(isPresented: self.$showEditTipPercentage, content: {
+                EditTipPercentagesView(isPresented: self.$showEditTipPercentage,
+                                       tipListViewModel: self.tipListViewModel)
+            })
+            loadAdMonitor.bannerView.frame(height: 60)
+        }.onAppear {
+            UITableView.appearance().separatorStyle = .none
+            UITableView.appearance().tableFooterView = UIView()
+            self.loadAdMonitor.startAdRefreshTimer()
+        }.onDisappear {
+            self.loadAdMonitor.stopAdRefreshTimer()
         }
-        .sheet(isPresented: self.$showEditTipPercentage, content: {
-            EditTipPercentagesView(isPresented: self.$showEditTipPercentage,
-                                   tipListViewModel: self.tipListViewModel)
-        })
     }
 }
-
-#if DEBUG
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        let numberFormatter = NumberFormatter.makeCurrencyFormatter(using: .current)
-        let totalViewModel = TotalViewModel(amount: "", currencyFormatter: numberFormatter)
-        return ContentView(totalViewModel: totalViewModel)
-    }
-}
-#endif

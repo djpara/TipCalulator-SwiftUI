@@ -33,8 +33,12 @@ struct EditTipPercentagesCell: View {
                 self.newTipOptions[self.index].tipPercentage = $0.doubleValue ?? 0
         })
         
-        return TextField(oldTipOption, text: bindingProxy)
-            .keyboardType(.numberPad)
+        return HStack {
+            TextField(oldTipOption, text: bindingProxy)
+                .keyboardType(.numberPad)
+            Spacer()
+            Image(systemName: "chevron.right")
+        }
     }
 }
 

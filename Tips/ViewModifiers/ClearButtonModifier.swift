@@ -9,13 +9,8 @@
 import SwiftUI
 
 struct ClearButtonModifier: ViewModifier {
-    @Binding var text: String
-    var totalViewModel: TotalViewModel
-    
-    public init(text: Binding<String>, totalViewModel: TotalViewModel) {
-        self._text = text
-        self.totalViewModel = totalViewModel
-    }
+    @Binding var total: String
+    var amountViewModel: AmountViewModel
     
     public func body(content: Content) -> some View {
         HStack {
@@ -25,8 +20,10 @@ struct ClearButtonModifier: ViewModifier {
             Image(systemName: "multiply.circle.fill")
                 .foregroundColor(.secondary)
                 .onTapGesture {
-                    self.text.removeAll()
-                    self.totalViewModel.amount.removeAll()
+                    self.total.removeAll()
+                    self.amountViewModel.originalAmount = ""
+                    self.amountViewModel.totalAmount = "$0.00"
+                    self.amountViewModel.tip = 0
                     UIApplication.closeAllKeyboards(.shared)
             }
         }
