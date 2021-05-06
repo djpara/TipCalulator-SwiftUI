@@ -27,13 +27,15 @@ class TipListViewModel: ObservableObject {
         tipOptions = [
             TipViewModel(tipPercentage: firstOption),
             TipViewModel(tipPercentage: secondOption),
-            TipViewModel(tipPercentage: thirdOption)
+            TipViewModel(tipPercentage: thirdOption),
+            TipViewModel(tipPercentage: -1)
         ]
     }
     
     @Published var tipOptions: [TipViewModel] = [
         TipViewModel(tipPercentage: 15),
         TipViewModel(tipPercentage: 18),
-        TipViewModel(tipPercentage: 20)
+        TipViewModel(tipPercentage: 20),
+        TipViewModel(tipPercentage: -1)
     ]
 }

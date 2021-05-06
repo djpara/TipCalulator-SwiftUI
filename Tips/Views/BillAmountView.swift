@@ -45,7 +45,8 @@ struct BillAmountView: View {
 
         let placeholder = currencyFormatter.string(from: 0) ?? ""
         
-        return VStack {
+        return HStack {
+            Text("Amount:").padding([.leading], 16).font(.footnote)
             ZStack(alignment: .trailing) {
                 TextField(placeholder,
                           text: bindingProxy)
@@ -60,3 +61,15 @@ struct BillAmountView: View {
         }
     }
 }
+
+#if DEBUG
+struct BillAmountView_Previews: PreviewProvider {
+    static var previews: some View {
+        let amountViewModel = AmountViewModel(totalAmount: "$20.00",
+                                              currencyFormatter: .makeCurrencyFormatter(using: .current))
+        return BillAmountView(total: amountViewModel.totalAmount,
+                              amountViewModel: amountViewModel,
+                              currencyFormatter: amountViewModel.currencyFormatter)
+    }
+}
+#endif

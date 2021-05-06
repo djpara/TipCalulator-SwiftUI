@@ -34,12 +34,14 @@ struct EditTipPercentagesView: View {
             var option: TipListViewModel.Option
             
             switch counter {
+            case 0:
+                option = .first
             case 1:
                 option = .second
             case 2:
                 option = .third
             default:
-                option = .first
+                return
             }
             
             userDefaults.set(tipOption.tipPercentage, forKey: option.rawValue)
@@ -55,7 +57,7 @@ struct EditTipPercentagesView: View {
                     .padding([.top], 16)
                     .multilineTextAlignment(.center)
                 List {
-                    ForEach(0..<tipListViewModel.tipOptions.count) {
+                    ForEach(0..<tipListViewModel.tipOptions.count - 1) {
                         EditTipPercentagesCell(label: labels[$0],
                                                tipOptions: self.tipListViewModel.tipOptions,
                                                newTipOptions: self.tipOptions,

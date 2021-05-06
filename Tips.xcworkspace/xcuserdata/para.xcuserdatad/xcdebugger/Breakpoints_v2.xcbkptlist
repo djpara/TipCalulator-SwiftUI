@@ -3,4 +3,70 @@
    uuid = "A0399C34-0E73-454D-8116-4CAACAE02544"
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "069016F7-7043-4A03-8F66-884784CD4852"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tips/Views/EditTipPercentages/EditTipPercentagesView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "init(isPresented:tipListViewModel:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "069016F7-7043-4A03-8F66-884784CD4852 - 52e249ef75ffa147"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Tips__Tip_Calculator.EditTipPercentagesView.init(isPresented: SwiftUI.Binding&lt;Swift.Bool&gt;, tipListViewModel: Tips__Tip_Calculator.TipListViewModel) -&gt; Tips__Tip_Calculator.EditTipPercentagesView"
+                  moduleName = "Tips: Tip Calculator"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/para/Documents/BigHeartApps/Tips/Tips/Views/EditTipPercentages/EditTipPercentagesView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "665">
+               </Location>
+               <Location
+                  uuid = "069016F7-7043-4A03-8F66-884784CD4852 - a4d025906f22872f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Tips__Tip_Calculator.TipViewModel) -&gt; Tips__Tip_Calculator.TipViewModel in Tips__Tip_Calculator.EditTipPercentagesView.init(isPresented: SwiftUI.Binding&lt;Swift.Bool&gt;, tipListViewModel: Tips__Tip_Calculator.TipListViewModel) -&gt; Tips__Tip_Calculator.EditTipPercentagesView"
+                  moduleName = "Tips: Tip Calculator"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/para/Documents/BigHeartApps/Tips/Tips/Views/EditTipPercentages/EditTipPercentagesView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "30">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "918ED715-2106-484E-AD80-DB7736D7E984"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tips/Views/EditTipPercentages/EditTipPercentagesView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "init(isPresented:tipListViewModel:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

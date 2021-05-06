@@ -21,6 +21,7 @@ struct ContentView: View {
     @State private var showAdvancedView = false
     
     @State var selectedTipPercentage = 0.0
+    @State var customTipPercentage: Double?
     
     var currencyFormatter = NumberFormatter.makeCurrencyFormatter(using: .current)
     
@@ -39,8 +40,10 @@ struct ContentView: View {
                     CalculationsCellView(amountViewModel: amountViewModel,
                                          currencyFormatter: currencyFormatter)
                     TipPercentageSegmentView(tipListViewModel: tipListViewModel,
-                                             selectedTipPercentage: $selectedTipPercentage)
+                                             selectedTipPercentage: $selectedTipPercentage,
+                                             customTipPercentage: $customTipPercentage)
                     CalculateTotalButton(selectedTipPercentage: $selectedTipPercentage,
+                                         customTipPercentage: $customTipPercentage,
                                          amountViewModel: amountViewModel,
                                          currencyFormatter: currencyFormatter)
                 }.navigationBarTitle("Tips")

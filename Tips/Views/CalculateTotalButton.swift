@@ -10,6 +10,7 @@ import SwiftUI
 
 struct CalculateTotalButton: View {
     @Binding var selectedTipPercentage: Double
+    @Binding var customTipPercentage: Double?
     
     var amountViewModel: AmountViewModel
     var currencyFormatter: NumberFormatter
@@ -19,7 +20,10 @@ struct CalculateTotalButton: View {
             Button(action: {
                 let totalAmount = self.amountViewModel.originalAmount.convertCurrencyToDouble(using: self.currencyFormatter)
                 guard totalAmount != 0 else { return }
-                self.amountViewModel.tip = totalAmount * (self.selectedTipPercentage / 100)
+                let tipPercentage = customTipPercentage ?? 0 == 0
+                    ? selectedTipPercentage
+                    : customTipPercentage
+                self.amountViewModel.tip = totalAmount * (tipPercentage! / 100)
                 try? self.amountViewModel.add(self.amountViewModel.tip)
             }) {
                 Text("Calculate")
