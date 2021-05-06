@@ -10,12 +10,14 @@ import SwiftUI
 
 struct EditTipPercentagesCell: View {
     var index: Int
+    var label: String
     var oldTipOption: String
     var newTipOptions = [TipViewModel]()
     
     @State private var newTipOption: String
     
-    init(tipOptions: [TipViewModel], newTipOptions: [TipViewModel], atIndex index: Int) {
+    init(label: String, tipOptions: [TipViewModel], newTipOptions: [TipViewModel], atIndex index: Int) {
+        self.label = label
         self.index = index
         self.newTipOptions = newTipOptions
         
@@ -34,10 +36,14 @@ struct EditTipPercentagesCell: View {
         })
         
         return HStack {
-            TextField(oldTipOption, text: bindingProxy)
-                .keyboardType(.numberPad)
-            Spacer()
-            Image(systemName: "chevron.right")
+            VStack(alignment: .leading, spacing: 8) {
+                Text(label).font(.footnote).foregroundColor(.gray)
+                HStack {
+                    TextField(oldTipOption, text: bindingProxy)
+                        .keyboardType(.numberPad)
+                    Text("%").padding([.trailing], 16)
+                }
+            }.padding([.leading], 8)
         }
     }
 }
@@ -46,7 +52,7 @@ struct EditTipPercentagesCell: View {
 struct EditTipPercentagesCell_Previews: PreviewProvider {
     static var previews: some View {
         let tipOptions = TipListViewModel().tipOptions
-        return EditTipPercentagesCell(tipOptions: tipOptions, newTipOptions: tipOptions, atIndex: 0)
+        return EditTipPercentagesCell(label: "Ok", tipOptions: tipOptions, newTipOptions: tipOptions, atIndex: 0)
     }
 }
 #endif

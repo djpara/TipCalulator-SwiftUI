@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		04BC8007DD10B39F9CEF0124 /* Pods_Tips_TipsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3ADBD5664221E5BC99E5636 /* Pods_Tips_TipsUITests.framework */; };
 		4B0A9FFE24E9961100D150B2 /* CalculationsCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0A9FFD24E9961100D150B2 /* CalculationsCellView.swift */; };
-		4B0AA00024E99A1500D150B2 /* TipPercentageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0A9FFF24E99A1500D150B2 /* TipPercentageCell.swift */; };
 		4B146BD824ACE5FF0093CF56 /* CalculateTotalButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B146BD724ACE5FF0093CF56 /* CalculateTotalButton.swift */; };
 		4B146C1A24AE08FE0093CF56 /* UIApplication+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B146C1924AE08FE0093CF56 /* UIApplication+Extensions.swift */; };
 		4B146C2024AE27130093CF56 /* ClearButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B146C1F24AE27130093CF56 /* ClearButtonModifier.swift */; };
@@ -66,7 +65,6 @@
 		119DA789D11E921D9C84335B /* Pods-Tips-TipsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tips-TipsUITests.debug.xcconfig"; path = "Target Support Files/Pods-Tips-TipsUITests/Pods-Tips-TipsUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		1538EE6D28BD8A964FA49256 /* Pods_Tips.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tips.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B0A9FFD24E9961100D150B2 /* CalculationsCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculationsCellView.swift; sourceTree = "<group>"; };
-		4B0A9FFF24E99A1500D150B2 /* TipPercentageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipPercentageCell.swift; sourceTree = "<group>"; };
 		4B146BD724ACE5FF0093CF56 /* CalculateTotalButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateTotalButton.swift; sourceTree = "<group>"; };
 		4B146C1924AE08FE0093CF56 /* UIApplication+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extensions.swift"; sourceTree = "<group>"; };
 		4B146C1F24AE27130093CF56 /* ClearButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearButtonModifier.swift; sourceTree = "<group>"; };
@@ -278,7 +276,6 @@
 		4BBB455324F759D200BC9197 /* TipPercentage */ = {
 			isa = PBXGroup;
 			children = (
-				4B0A9FFF24E99A1500D150B2 /* TipPercentageCell.swift */,
 				4BDE9A12248891B8006B78D8 /* TipPercentageSegmentView.swift */,
 			);
 			path = TipPercentage;
@@ -579,7 +576,6 @@
 				4BDE9A13248891B8006B78D8 /* TipPercentageSegmentView.swift in Sources */,
 				4BDE9A0F24885F03006B78D8 /* AmountViewModel.swift in Sources */,
 				4BB05FA1248608EA005C0C01 /* BillAmountView.swift in Sources */,
-				4B0AA00024E99A1500D150B2 /* TipPercentageCell.swift in Sources */,
 				4B8F9F5B24A8745100E25020 /* EditTipPercentagesView.swift in Sources */,
 				4B8F9F5D24A8791C00E25020 /* EditTipPercentagesCell.swift in Sources */,
 				4B0A9FFE24E9961100D150B2 /* CalculationsCellView.swift in Sources */,

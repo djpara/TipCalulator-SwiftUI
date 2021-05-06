@@ -9,6 +9,8 @@
 import SwiftUI
 
 struct CalculationsCellView: View {
+    @Environment(\.colorScheme) var colorScheme
+    
     @ObservedObject var amountViewModel: AmountViewModel
     var currencyFormatter: NumberFormatter
     
@@ -33,6 +35,6 @@ struct CalculationsCellView: View {
                     .padding()
             }
         }.overlay(RoundedRectangle(cornerRadius: 8)
-            .stroke(Color.black, lineWidth: 1))
+                    .stroke(colorScheme == .dark ? Color.white : Color.black, lineWidth: 1))
     }
 }

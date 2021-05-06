@@ -9,11 +9,13 @@
 import SwiftUI
 
 struct ClearTextFieldModifier: ViewModifier {
+    @Environment(\.colorScheme) var colorScheme
+    
     func body(content: Content) -> some View {
         content
             .keyboardType(.numberPad)
             .foregroundColor(.clear)
-            .accentColor(.black)
+            .accentColor(colorScheme == .dark ? .white : .black)
             .multilineTextAlignment(.trailing)
             .font(.title)
             .padding(10)

@@ -16,6 +16,8 @@ struct EditTipPercentagesView: View {
     var tipListViewModel: TipListViewModel
     var tipOptions: [TipViewModel] = []
     
+    private var labels = ["Good", "Very good", "Best"]
+    
     init(isPresented: Binding<Bool>, tipListViewModel: TipListViewModel) {
         _isPresented = isPresented
         self.tipListViewModel = tipListViewModel
@@ -42,23 +44,39 @@ struct EditTipPercentagesView: View {
 
     var body: some View {
         NavigationView {
-            List {
-                ForEach(0..<tipListViewModel.tipOptions.count) {
-                    EditTipPercentagesCell(tipOptions: self.tipListViewModel.tipOptions,
-                                           newTipOptions: self.tipOptions,
-                                           atIndex: $0)
-                }.padding([.top, .bottom], 8)
-            }.navigationBarTitle("Edit Tip Percentages", displayMode: .inline)
-                .navigationBarItems(trailing: Button(action: {
-                    UIApplication.closeAllKeyboards(.shared)
-                    self.tipListViewModel.tipOptions = self.tipOptions
-                    self.isPresented = false
-                    self.saveTipOptionsToUserDefaults()
-                }, label: {
-                    Text("Save")
-                }))
+            VStack {
+                Text("How much do you tip for quality of service?")
+                    .frame(width: UIScreen.main.bounds.width/2,
+                           height: .infinity)
+                    .font(.caption)
+                    .padding([.top], 16)
+                    .multilineTextAlignment(.center)
+                List {
+                    ForEach(0..<tipListViewModel.tipOptions.count) {
+                        EditTipPercentagesCell(label: labels[$0],
+                                               tipOptions: self.tipListViewModel.tipOptions,
+                                               newTipOptions: self.tipOptions,
+                                               atIndex: $0)
+                    }.padding([.top, .bottom], 8)
+                }.navigationBarTitle("Tips 💸", displayMode: .inline)
+                .navigationBarItems(
+                    leading: Button(action: {
+                        UIApplication.closeAllKeyboards(.shared)
+                        self.isPresented = false
+                    }, label: {
+                        Image(systemName: "xmark")
+                    }),
+                    trailing: Button(action: {
+                        UIApplication.closeAllKeyboards(.shared)
+                        self.tipListViewModel.tipOptions = self.tipOptions
+                        self.isPresented = false
+                        self.saveTipOptionsToUserDefaults()
+                    }, label: {
+                        Text("Save")
+                    }))
                 .onAppear {
                     UITableView.appearance().tableFooterView = UIView()
+                }
             }
         }.navigationViewStyle(StackNavigationViewStyle())
     }

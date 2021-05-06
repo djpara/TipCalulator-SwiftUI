@@ -9,15 +9,18 @@
 import SwiftUI
 
 struct ContentView: View {
+    @Environment(\.colorScheme) var colorScheme
+    
     @ObservedObject var amountViewModel: AmountViewModel
     @ObservedObject var tipListViewModel: TipListViewModel
     @ObservedObject var loadAdMonitor = LoadAdMonitor(bannerView: GoogleAdView())
     
     @State private var showEditTipPercentage = false
+    @State private var showMenuPopover = false
     @State private var showAdvancedView = false
     
     @State var selectedTipPercentage = 0.0
-
+    
     var currencyFormatter = NumberFormatter.makeCurrencyFormatter(using: .current)
     
     init(amountViewModel: AmountViewModel, tipListViewModel: TipListViewModel) {
@@ -34,13 +37,22 @@ struct ContentView: View {
                                    currencyFormatter: currencyFormatter)
                     CalculationsCellView(amountViewModel: amountViewModel,
                                          currencyFormatter: currencyFormatter)
-                    TipPercentageCell(tipListViewModel: tipListViewModel,
-                                      selectedTipPercentage: $selectedTipPercentage,
-                                      showEditTipPercentage: $showEditTipPercentage)
+                    TipPercentageSegmentView(tipListViewModel: tipListViewModel,
+                                             selectedTipPercentage: $selectedTipPercentage)
                     CalculateTotalButton(selectedTipPercentage: $selectedTipPercentage,
                                          amountViewModel: amountViewModel,
                                          currencyFormatter: currencyFormatter)
                 }.navigationBarTitle("Tips")
+                .toolbar {
+                    Menu(
+                        content: {
+                            Button(
+                                action: { showEditTipPercentage.toggle() },
+                                label: { Text("Edit Tip Percentages") }
+                            )},
+                        label: { Image(systemName: "line.horizontal.3") }
+                    ).foregroundColor(colorScheme == .dark ? .white : .black)
+                }
                 .buttonStyle(PlainButtonStyle())
             }.navigationViewStyle(StackNavigationViewStyle())
             .sheet(isPresented: self.$showEditTipPercentage, content: {
@@ -63,7 +75,7 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         let amountViewModel = AmountViewModel(totalAmount: "$20.00",
                                               currencyFormatter: .makeCurrencyFormatter(using: .current))
-        return ContentView(amountViewModel: amountViewModel, tipListViewModel: TipListViewModel())
+        return ForEach(ColorScheme.allCases, id: \.self, content: ContentView(amountViewModel: amountViewModel, tipListViewModel: TipListViewModel()).preferredColorScheme)
     }
 }
 #endif
