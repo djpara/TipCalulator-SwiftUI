@@ -35,6 +35,6 @@ struct CalculationsCellView: View {
                     .padding()
             }
         }.overlay(RoundedRectangle(cornerRadius: 8)
-                    .stroke(colorScheme == .dark ? Color.white : Color.black, lineWidth: 1))
+                    .stroke(colorScheme == .dark ? Color.gray : Color.black, lineWidth: 1))
     }
 }

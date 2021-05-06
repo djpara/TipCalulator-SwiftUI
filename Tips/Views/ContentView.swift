@@ -16,6 +16,7 @@ struct ContentView: View {
     @ObservedObject var loadAdMonitor = LoadAdMonitor(bannerView: GoogleAdView())
     
     @State private var showEditTipPercentage = false
+    @State private var showTipGuide = false
     @State private var showMenuPopover = false
     @State private var showAdvancedView = false
     
@@ -49,15 +50,26 @@ struct ContentView: View {
                             Button(
                                 action: { showEditTipPercentage.toggle() },
                                 label: { Text("Edit Tip Percentages") }
-                            )},
-                        label: { Image(systemName: "line.horizontal.3") }
-                    ).foregroundColor(colorScheme == .dark ? .white : .black)
+                            )
+                            Button(
+                                action: { showTipGuide.toggle() },
+                                label: { Text("Tip Guide")})},
+                        label: {
+                            Image(systemName: "line.horizontal.3")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 24, height: 24) }
+                    ).frame(width: 44, height: 44)
+                    .foregroundColor(colorScheme == .dark ? .white : .black)
                 }
                 .buttonStyle(PlainButtonStyle())
             }.navigationViewStyle(StackNavigationViewStyle())
             .sheet(isPresented: self.$showEditTipPercentage, content: {
                 EditTipPercentagesView(isPresented: self.$showEditTipPercentage,
                                        tipListViewModel: self.tipListViewModel)
+            })
+            .sheet(isPresented: self.$showTipGuide, content: {
+                TipGuideView(isPresented: self.$showTipGuide)
             })
             loadAdMonitor.bannerView.frame(height: 60)
         }.onAppear {

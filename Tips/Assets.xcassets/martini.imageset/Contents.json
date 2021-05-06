@@ -1,0 +1,16 @@
+{
+  "images" : [
+    {
+      "filename" : "Square Graphic Post 800x800 px-4.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  },
+  "properties" : {
+    "preserves-vector-representation" : true,
+    "template-rendering-intent" : "template"
+  }
+}

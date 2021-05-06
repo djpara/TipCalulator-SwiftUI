@@ -16,6 +16,10 @@ struct EditTipPercentagesView: View {
     var tipListViewModel: TipListViewModel
     var tipOptions: [TipViewModel] = []
     
+    private var descriptionTextWidth: CGFloat {
+        UIScreen.main.bounds.width/2
+    }
+    
     private var labels = ["Good", "Very good", "Best"]
     
     init(isPresented: Binding<Bool>, tipListViewModel: TipListViewModel) {
@@ -46,8 +50,7 @@ struct EditTipPercentagesView: View {
         NavigationView {
             VStack {
                 Text("How much do you tip for quality of service?")
-                    .frame(width: UIScreen.main.bounds.width/2,
-                           height: .infinity)
+                    .frame(width: descriptionTextWidth)
                     .font(.caption)
                     .padding([.top], 16)
                     .multilineTextAlignment(.center)
