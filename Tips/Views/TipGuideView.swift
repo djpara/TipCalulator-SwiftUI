@@ -15,9 +15,13 @@ struct TipGuideView: View {
     }
     
     @Binding var isPresented: Bool
+    @Binding var selectedTipPercentage: Double
+    @Binding var customTipPercentage: Double?
     
-    init(isPresented: Binding<Bool>) {
+    init(isPresented: Binding<Bool>, selectedTipPercentage: Binding<Double>, customTipPercentage: Binding<Double?>) {
         _isPresented = isPresented
+        _selectedTipPercentage = selectedTipPercentage
+        _customTipPercentage = customTipPercentage
     }
     
     var body: some View {
@@ -34,7 +38,10 @@ struct TipGuideView: View {
                                         GridItem(.flexible())],
                               spacing: 32) {
                         ForEach(0..<Services.list.count) {
-                            ServiceView(service: services[$0])
+                            ServiceView(isPresented: $isPresented,
+                                        selectedTipPercentage: $selectedTipPercentage,
+                                        customTipPercentage: $customTipPercentage,
+                                        service: services[$0])
                         }
                     }.padding()
                 }
@@ -52,6 +59,10 @@ struct TipGuideView: View {
 }
 
 struct ServiceView: View {
+    @Binding var isPresented: Bool
+    @Binding var selectedTipPercentage: Double
+    @Binding var customTipPercentage: Double?
+    
     var service: TipGuideModel
     
     var body: some View {
@@ -62,6 +73,11 @@ struct ServiceView: View {
                     .scaledToFit()
                     .frame(width: 44, height: 44)
                     .padding()
+                    .onTapGesture {
+                        selectedTipPercentage = -1
+                        customTipPercentage = service.min
+                        isPresented.toggle()
+                    }
             }
             Text(service.service).font(.headline)
             Spacer()
@@ -74,6 +90,8 @@ struct ServiceView: View {
 
 struct TipGuideView_Previews: PreviewProvider {
     static var previews: some View {
-        TipGuideView(isPresented: .constant(true))
+        TipGuideView(isPresented: .constant(true),
+                     selectedTipPercentage: .constant(0),
+                     customTipPercentage: .constant(0))
     }
 }

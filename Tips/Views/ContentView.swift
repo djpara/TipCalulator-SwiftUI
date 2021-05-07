@@ -31,32 +31,38 @@ struct ContentView: View {
     }
     
     var body: some View {
-        VStack {
+        let billAmoutView = BillAmountView(total: amountViewModel.originalAmount,
+                                           amountViewModel: amountViewModel,
+                                           currencyFormatter: currencyFormatter)
+        let calculationCellView = CalculationsCellView(amountViewModel: amountViewModel,
+                                                       currencyFormatter: currencyFormatter)
+        let tipPercentageSegmentView = TipPercentageSegmentView(tipListViewModel: tipListViewModel,
+                                                                selectedTipPercentage: $selectedTipPercentage,
+                                                                customTipPercentage: $customTipPercentage)
+        let calculateTotalButton = CalculateTotalButton(selectedTipPercentage: $selectedTipPercentage,
+                                                        customTipPercentage: $customTipPercentage,
+                                                        amountViewModel: amountViewModel,
+                                                        currencyFormatter: currencyFormatter)
+        return VStack {
             NavigationView {
                 List {
-                    BillAmountView(total: amountViewModel.originalAmount,
-                                   amountViewModel: amountViewModel,
-                                   currencyFormatter: currencyFormatter)
-                    CalculationsCellView(amountViewModel: amountViewModel,
-                                         currencyFormatter: currencyFormatter)
-                    TipPercentageSegmentView(tipListViewModel: tipListViewModel,
-                                             selectedTipPercentage: $selectedTipPercentage,
-                                             customTipPercentage: $customTipPercentage)
-                    CalculateTotalButton(selectedTipPercentage: $selectedTipPercentage,
-                                         customTipPercentage: $customTipPercentage,
-                                         amountViewModel: amountViewModel,
-                                         currencyFormatter: currencyFormatter)
+                    billAmoutView
+                    calculationCellView
+                    tipPercentageSegmentView
+                    calculateTotalButton
                 }.navigationBarTitle("Tips")
                 .toolbar {
                     Menu(
                         content: {
                             Button(
+                                action: { showTipGuide.toggle() },
+                                label: { Text("Tip Guide")}
+                            )
+                            Button(
                                 action: { showEditTipPercentage.toggle() },
                                 label: { Text("Edit Tip Percentages") }
                             )
-                            Button(
-                                action: { showTipGuide.toggle() },
-                                label: { Text("Tip Guide")})},
+                        },
                         label: {
                             Image(systemName: "line.horizontal.3")
                                 .resizable()
@@ -72,7 +78,9 @@ struct ContentView: View {
                                        tipListViewModel: self.tipListViewModel)
             })
             .sheet(isPresented: self.$showTipGuide, content: {
-                TipGuideView(isPresented: self.$showTipGuide)
+                TipGuideView(isPresented: self.$showTipGuide,
+                             selectedTipPercentage: self.$selectedTipPercentage,
+                             customTipPercentage: self.$customTipPercentage)
             })
             loadAdMonitor.bannerView.frame(height: 60)
         }.onAppear {
@@ -81,7 +89,9 @@ struct ContentView: View {
             self.loadAdMonitor.startAdRefreshTimer()
         }.onDisappear {
             self.loadAdMonitor.stopAdRefreshTimer()
-        }
+        }.onChange(of: customTipPercentage, perform: { value in
+            calculateTotalButton.calculate()
+        })
     }
 }
 

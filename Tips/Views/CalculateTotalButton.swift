@@ -18,18 +18,23 @@ struct CalculateTotalButton: View {
     var body: some View {
         HStack {
             Button(action: {
-                let totalAmount = self.amountViewModel.originalAmount.convertCurrencyToDouble(using: self.currencyFormatter)
-                guard totalAmount != 0 else { return }
-                let tipPercentage = customTipPercentage ?? 0 == 0
-                    ? selectedTipPercentage
-                    : customTipPercentage
-                self.amountViewModel.tip = totalAmount * (tipPercentage! / 100)
-                try? self.amountViewModel.add(self.amountViewModel.tip)
+                calculate()
             }) {
                 Text("Calculate")
                     .frame(maxWidth: .infinity)
                     .modifier(GoButtonModifier())
             }
         }
+    }
+    
+    func calculate() {
+        let totalAmount = self.amountViewModel.originalAmount.convertCurrencyToDouble(using: self.currencyFormatter)
+        guard totalAmount != 0 else { return }
+        var tipPercentage: Double? = selectedTipPercentage > 0 ? selectedTipPercentage : 0
+        tipPercentage = customTipPercentage ?? 0 <= 0
+            ? tipPercentage
+            : customTipPercentage
+        self.amountViewModel.tip = totalAmount * (tipPercentage! / 100)
+        try? self.amountViewModel.add(self.amountViewModel.tip)
     }
 }

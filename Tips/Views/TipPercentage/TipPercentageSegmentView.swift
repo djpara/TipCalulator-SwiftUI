@@ -33,11 +33,6 @@ struct TipPercentageSegmentView: View {
             set: {
                 customTipPercentage = nil
                 selectedTipPercentage = $0
-                if $0 == -1 {
-                    showCustomized.toggle()
-                    return
-                }
-                showCustomized = false
             }
         )
         
@@ -47,7 +42,6 @@ struct TipPercentageSegmentView: View {
                     Text(self.getTipPercentage(for: tipViewModel))
                 }
             }.pickerStyle(SegmentedPickerStyle())
-            .padding([.bottom], 8)
             if showCustomized {
                 HStack {
                     ZStack {
@@ -57,9 +51,11 @@ struct TipPercentageSegmentView: View {
                             .accentColor(colorScheme == .dark ? .white : .black)
                     }
                     if customTipPercentage != nil { Text("%") }
-                }
+                }.padding([.top], 8)
             }
-        }
+        }.onChange(of: selectedTipPercentage, perform: { value in
+            showCustomized = value == -1
+        })
     }
     
     func getTipPercentage(for tipViewModel: TipViewModel) -> String {
