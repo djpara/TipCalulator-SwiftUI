@@ -46,40 +46,42 @@ struct ContentView: View {
                                                         currencyFormatter: currencyFormatter)
         return VStack {
             NavigationView {
-                ScrollView {
-                    LazyVStack {
-                        billAmoutView.padding([.leading, .trailing])
-                        calculationCellView.padding([.leading, .trailing])
-                        tipPercentageSegmentView.padding([.leading, .trailing])
-                        calculateTotalButton.padding([.leading, .trailing])
-                    }.listSeparatorStyle(style: .none)
-                    .navigationBarTitle("Tips")
-                    .toolbar {
-                        Menu(
-                            content: {
-                                Button(
-                                    action: { showTipGuide.toggle() },
-                                    label: { Text("Tip Guide")}
-                                )
-                                Button(
-                                    action: { showSavedAlert.toggle() },
-                                    label: { Text("Save transaction") }
-                                )
-                                Button(
-                                    action: { showEditTipPercentage.toggle() },
-                                    label: { Text("Edit Tip Percentages") }
-                                )
-                            },
-                            label: {
-                                Image(systemName: "line.horizontal.3")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 24, height: 24) }
-                        ).frame(width: 44, height: 44)
-                        .foregroundColor(colorScheme == .dark ? .white : .black)
-                    }
+                GeometryReader { geometryWithSafeArea in
+                    GeometryReader { geometry in
+                        ScrollView {
+                            LazyVStack {
+                                billAmoutView.padding([.leading, .trailing])
+                                calculationCellView.padding([.leading, .trailing])
+                                tipPercentageSegmentView.padding([.leading, .trailing])
+                                calculateTotalButton.padding([.leading, .trailing])
+                            }.listSeparatorStyle(style: .none)
+                            .navigationBarTitle("Tips")
+                            .toolbar {
+                                Menu(
+                                    content: {
+                                        Button(
+                                            action: { showTipGuide.toggle() },
+                                            label: { Text("Tip Guide")}
+                                        )
+                                        Button(
+                                            action: { showEditTipPercentage.toggle() },
+                                            label: { Text("Edit Tip Percentages") }
+                                        )
+                                    },
+                                    label: {
+                                        Image(systemName: "line.horizontal.3")
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(width: 24, height: 24) }
+                                ).frame(width: 44, height: 44)
+                                .foregroundColor(colorScheme == .dark ? .white : .black)
+                            }.padding(.top, geometryWithSafeArea.safeAreaInsets.top)
+                            .padding(.bottom, geometryWithSafeArea.safeAreaInsets.bottom)
+                            .padding(.leading, geometryWithSafeArea.safeAreaInsets.leading)
+                            .padding(.trailing, geometryWithSafeArea.safeAreaInsets.trailing)
+                        } .buttonStyle(PlainButtonStyle())
+                    }.edgesIgnoringSafeArea(.all)
                 }
-                .buttonStyle(PlainButtonStyle())
             }.navigationViewStyle(StackNavigationViewStyle())
             .sheet(isPresented: self.$showEditTipPercentage, content: {
                 EditTipPercentagesView(isPresented: self.$showEditTipPercentage,
