@@ -19,6 +19,7 @@ struct ContentView: View {
     @State private var showTipGuide = false
     @State private var showMenuPopover = false
     @State private var showAdvancedView = false
+    @State private var showSavedAlert = false
     
     @State var selectedTipPercentage = 0.0
     @State var customTipPercentage: Double?
@@ -61,6 +62,10 @@ struct ContentView: View {
                                     label: { Text("Tip Guide")}
                                 )
                                 Button(
+                                    action: { showSavedAlert.toggle() },
+                                    label: { Text("Save transaction") }
+                                )
+                                Button(
                                     action: { showEditTipPercentage.toggle() },
                                     label: { Text("Edit Tip Percentages") }
                                 )
@@ -94,6 +99,10 @@ struct ContentView: View {
         }.onChange(of: customTipPercentage, perform: { value in
             calculateTotalButton.calculate()
         })
+        .alert(isPresented: $showSavedAlert) {
+            let message = Text("Your \(amountViewModel.totalAmount) transaction has been saved")
+            return Alert(title: Text("Saved"), message: message, dismissButton: .default(Text("OK")))
+        }
     }
 }
 
