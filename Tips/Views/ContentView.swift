@@ -45,31 +45,34 @@ struct ContentView: View {
                                                         currencyFormatter: currencyFormatter)
         return VStack {
             NavigationView {
-                List {
-                    billAmoutView
-                    calculationCellView
-                    tipPercentageSegmentView
-                    calculateTotalButton
-                }.navigationBarTitle("Tips")
-                .toolbar {
-                    Menu(
-                        content: {
-                            Button(
-                                action: { showTipGuide.toggle() },
-                                label: { Text("Tip Guide")}
-                            )
-                            Button(
-                                action: { showEditTipPercentage.toggle() },
-                                label: { Text("Edit Tip Percentages") }
-                            )
-                        },
-                        label: {
-                            Image(systemName: "line.horizontal.3")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 24, height: 24) }
-                    ).frame(width: 44, height: 44)
-                    .foregroundColor(colorScheme == .dark ? .white : .black)
+                ScrollView {
+                    LazyVStack {
+                        billAmoutView.padding([.leading, .trailing])
+                        calculationCellView.padding([.leading, .trailing])
+                        tipPercentageSegmentView.padding([.leading, .trailing])
+                        calculateTotalButton.padding([.leading, .trailing])
+                    }.listSeparatorStyle(style: .none)
+                    .navigationBarTitle("Tips")
+                    .toolbar {
+                        Menu(
+                            content: {
+                                Button(
+                                    action: { showTipGuide.toggle() },
+                                    label: { Text("Tip Guide")}
+                                )
+                                Button(
+                                    action: { showEditTipPercentage.toggle() },
+                                    label: { Text("Edit Tip Percentages") }
+                                )
+                            },
+                            label: {
+                                Image(systemName: "line.horizontal.3")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 24, height: 24) }
+                        ).frame(width: 44, height: 44)
+                        .foregroundColor(colorScheme == .dark ? .white : .black)
+                    }
                 }
                 .buttonStyle(PlainButtonStyle())
             }.navigationViewStyle(StackNavigationViewStyle())
@@ -84,7 +87,6 @@ struct ContentView: View {
             })
             loadAdMonitor.bannerView.frame(height: 60)
         }.onAppear {
-            UITableView.appearance().separatorStyle = .none
             UITableView.appearance().tableFooterView = UIView()
             self.loadAdMonitor.startAdRefreshTimer()
         }.onDisappear {

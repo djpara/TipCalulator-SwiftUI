@@ -25,6 +25,7 @@
 		4B552DEE247B80CB00CF15D8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B552DED247B80CB00CF15D8 /* Preview Assets.xcassets */; };
 		4B552DF1247B80CB00CF15D8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B552DEF247B80CB00CF15D8 /* LaunchScreen.storyboard */; };
 		4B552E07247B80CB00CF15D8 /* TipsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B552E06247B80CB00CF15D8 /* TipsUITests.swift */; };
+		4B656196264586F000905EA9 /* ListSeparatorStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B656195264586F000905EA9 /* ListSeparatorStyle.swift */; };
 		4B8F9F5B24A8745100E25020 /* EditTipPercentagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8F9F5A24A8745100E25020 /* EditTipPercentagesView.swift */; };
 		4B8F9F5D24A8791C00E25020 /* EditTipPercentagesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8F9F5C24A8791C00E25020 /* EditTipPercentagesCell.swift */; };
 		4BB05FA1248608EA005C0C01 /* BillAmountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB05FA0248608EA005C0C01 /* BillAmountView.swift */; };
@@ -89,6 +90,7 @@
 		4B552E02247B80CB00CF15D8 /* TipsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TipsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B552E06247B80CB00CF15D8 /* TipsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipsUITests.swift; sourceTree = "<group>"; };
 		4B552E08247B80CB00CF15D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4B656195264586F000905EA9 /* ListSeparatorStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSeparatorStyle.swift; sourceTree = "<group>"; };
 		4B6BAE3D254C605100A8B8FC /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMobileAds.framework; path = "Pods/Google-Mobile-Ads-SDK/Frameworks/GoogleMobileAdsFramework-Current/GoogleMobileAds.framework"; sourceTree = "<group>"; };
 		4B8F9F5A24A8745100E25020 /* EditTipPercentagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTipPercentagesView.swift; sourceTree = "<group>"; };
 		4B8F9F5C24A8791C00E25020 /* EditTipPercentagesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTipPercentagesCell.swift; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 				4B146C1F24AE27130093CF56 /* ClearButtonModifier.swift */,
 				4B146C2124AE276C0093CF56 /* ClearTextFieldModifier.swift */,
 				4B146C2324AE2C1C0093CF56 /* GoButtonModifier.swift */,
+				4B656195264586F000905EA9 /* ListSeparatorStyle.swift */,
 			);
 			path = ViewModifiers;
 			sourceTree = "<group>";
@@ -578,6 +581,7 @@
 				4B146BD824ACE5FF0093CF56 /* CalculateTotalButton.swift in Sources */,
 				4BCF89B324EAF21A00349206 /* LoadAdMonitor.swift in Sources */,
 				4BEDB40D2496DEF8005F3892 /* SpellOutCurrency.swift in Sources */,
+				4B656196264586F000905EA9 /* ListSeparatorStyle.swift in Sources */,
 				4BED9107247CED640026A4AD /* Double+Extensions.swift in Sources */,
 				4B4330042480AD8600CFA163 /* String+Extensions.swift in Sources */,
 				4BDE9A13248891B8006B78D8 /* TipPercentageSegmentView.swift in Sources */,
