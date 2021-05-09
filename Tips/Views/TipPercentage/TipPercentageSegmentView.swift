@@ -54,8 +54,10 @@ struct TipPercentageSegmentView: View {
                 }.padding([.top], 8)
             }
         }.onChange(of: selectedTipPercentage, perform: { value in
-            showCustomized = value == -1
-        })
+            withAnimation {
+                showCustomized = value == -1
+            }
+        }).transition(.slide)
     }
     
     func getTipPercentage(for tipViewModel: TipViewModel) -> String {
