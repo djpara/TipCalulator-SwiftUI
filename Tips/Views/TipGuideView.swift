@@ -85,7 +85,7 @@ struct ServiceView: View {
 
 struct TipGuideView_Previews: PreviewProvider {
     static var previews: some View {
-        let amountViewModel = AmountViewModel(totalAmount: "",
+        let amountViewModel = AmountViewModel(originalAmount: "",
                                               currencyFormatter: .makeCurrencyFormatter(using: .current))
         TipGuideView(isPresented: .constant(true), amountViewModel: amountViewModel)
     }

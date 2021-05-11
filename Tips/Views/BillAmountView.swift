@@ -70,7 +70,7 @@ struct BillAmountView: View {
 #if DEBUG
 struct BillAmountView_Previews: PreviewProvider {
     static var previews: some View {
-        let amountViewModel = AmountViewModel(totalAmount: "$20.00",
+        let amountViewModel = AmountViewModel(originalAmount: "$20.00",
                                               currencyFormatter: .makeCurrencyFormatter(using: .current))
         return BillAmountView(amountViewModel: amountViewModel)
     }

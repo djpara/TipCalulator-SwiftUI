@@ -17,14 +17,14 @@ class AmountViewModel: ObservableObject {
     
     private(set) var currencyFormatter: NumberFormatter
     
-    init(totalAmount: String, currencyFormatter: NumberFormatter) {
+    init(originalAmount: String, currencyFormatter: NumberFormatter) {
         self.totalAmount = "$0.00"
         self.currencyFormatter = currencyFormatter
-        originalAmount = totalAmount
+        self.originalAmount = originalAmount
         tipPercentage = 0
         tip = 0
         
-        if let number = self.convertToDouble(totalAmount)?.nsNumberValue, number != 0 {
+        if let number = self.convertToDouble(originalAmount)?.nsNumberValue, number != 0 {
             self.totalAmount = currencyFormatter.string(from: number) ?? ""
         }
     }

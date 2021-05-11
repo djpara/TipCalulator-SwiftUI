@@ -75,7 +75,7 @@ struct TipPercentageSegmentView: View {
 #if DEBUG
 struct TipPercentageCellView_Previews: PreviewProvider {
     static var previews: some View {
-        let amountViewModel = AmountViewModel(totalAmount: "",
+        let amountViewModel = AmountViewModel(originalAmount: "",
                                               currencyFormatter: .makeCurrencyFormatter(using: .current))
         TipPercentageSegmentView(amountViewModel: amountViewModel)
     }

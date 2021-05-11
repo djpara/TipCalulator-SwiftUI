@@ -17,6 +17,8 @@
 		4B14BB2A24E5ABD30036C198 /* GoogleAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B14BB2924E5ABD30036C198 /* GoogleAdView.swift */; };
 		4B281B3724A87D0000088D2E /* TipConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B281B3624A87D0000088D2E /* TipConfig.swift */; };
 		4B373CB72649C7A500F85A04 /* SaveTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B373CB62649C7A500F85A04 /* SaveTransactionView.swift */; };
+		4B373CB9264AB61000F85A04 /* CoreData+Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B373CB8264AB61000F85A04 /* CoreData+Transaction.swift */; };
+		4B373CBD264AC15E00F85A04 /* StoreFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B373CBC264AC15E00F85A04 /* StoreFactory.swift */; };
 		4B4330042480AD8600CFA163 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4330032480AD8600CFA163 /* String+Extensions.swift */; };
 		4B4330092480B75E00CFA163 /* StringExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4330082480B75E00CFA163 /* StringExtensionsTests.swift */; };
 		4B552DE5247B80CA00CF15D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B552DE4247B80CA00CF15D8 /* AppDelegate.swift */; };
@@ -81,6 +83,8 @@
 		4B14BB2924E5ABD30036C198 /* GoogleAdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAdView.swift; sourceTree = "<group>"; };
 		4B281B3624A87D0000088D2E /* TipConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipConfig.swift; sourceTree = "<group>"; };
 		4B373CB62649C7A500F85A04 /* SaveTransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveTransactionView.swift; sourceTree = "<group>"; };
+		4B373CB8264AB61000F85A04 /* CoreData+Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreData+Transaction.swift"; sourceTree = "<group>"; };
+		4B373CBC264AC15E00F85A04 /* StoreFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreFactory.swift; sourceTree = "<group>"; };
 		4B4330032480AD8600CFA163 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		4B4330082480B75E00CFA163 /* StringExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensionsTests.swift; sourceTree = "<group>"; };
 		4B552DE1247B80CA00CF15D8 /* Tips: Tip Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tips: Tip Calculator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -260,6 +264,7 @@
 				4BF3722B26439F76008E3785 /* TipGuideModel.swift */,
 				4BEDB40B2496DEC4005F3892 /* PropertyWrappers */,
 				4BEEAA9F2648D77000E16E7E /* Transaction */,
+				4B373CBC264AC15E00F85A04 /* StoreFactory.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -387,6 +392,7 @@
 		4BEEAAB52648F5C400E16E7E /* Transaction */ = {
 			isa = PBXGroup;
 			children = (
+				4B373CB8264AB61000F85A04 /* CoreData+Transaction.swift */,
 			);
 			path = Transaction;
 			sourceTree = "<group>";
@@ -628,6 +634,7 @@
 				4B552DE7247B80CA00CF15D8 /* SceneDelegate.swift in Sources */,
 				4BDE9A1924893F51006B78D8 /* Tip.swift in Sources */,
 				4B146BD824ACE5FF0093CF56 /* CalculateTotalButton.swift in Sources */,
+				4B373CBD264AC15E00F85A04 /* StoreFactory.swift in Sources */,
 				4BCF89B324EAF21A00349206 /* LoadAdMonitor.swift in Sources */,
 				4BEDB40D2496DEF8005F3892 /* SpellOutCurrency.swift in Sources */,
 				4BED9107247CED640026A4AD /* Double+Extensions.swift in Sources */,
@@ -642,6 +649,7 @@
 				4BEEAA9E2648D74C00E16E7E /* TransactionStore.swift in Sources */,
 				4B0A9FFE24E9961100D150B2 /* CalculationsCellView.swift in Sources */,
 				4B281B3724A87D0000088D2E /* TipConfig.swift in Sources */,
+				4B373CB9264AB61000F85A04 /* CoreData+Transaction.swift in Sources */,
 				4BED9105247CE81E0026A4AD /* NumberFormatter+Extensions.swift in Sources */,
 				4BED90FD247CD01E0026A4AD /* AmountTotalError.swift in Sources */,
 				4B14BB2A24E5ABD30036C198 /* GoogleAdView.swift in Sources */,

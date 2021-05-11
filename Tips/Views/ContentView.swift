@@ -23,10 +23,12 @@ struct ContentView: View {
     @State var transactionName: String = ""
     
     var currencyFormatter = NumberFormatter.makeCurrencyFormatter(using: .current)
-    private var popupWidth = UIScreen.main.bounds.width/2
+    private let popupWidth = UIScreen.main.bounds.width/2
+    private let transactionStore: TransactionStore
     
-    init(amountViewModel: AmountViewModel) {
+    init(amountViewModel: AmountViewModel, storeFactory: StoreFactory = StoreFactory()) {
         self.amountViewModel = amountViewModel
+        self.transactionStore = storeFactory.make(.transaction, inMemory: true, context: .main)
     }
     
     var body: some View {
@@ -84,8 +86,10 @@ struct ContentView: View {
                              amountViewModel: amountViewModel)
             })
             .popup(isPresented: showSaveTransactionPopup) {
+                let viewModel = SaveTransactionViewModel(amountViewModel: amountViewModel,
+                                                         transactionStore: transactionStore)
                 SaveTransactionView(show: $showSaveTransactionPopup,
-                                    saveTransactionViewModel: makeTransactionViewModel())
+                                    saveTransactionViewModel: viewModel)
                     .frame(width: 250)
             }
             loadAdMonitor.bannerView.frame(height: 60)
@@ -100,41 +104,28 @@ struct ContentView: View {
             amountViewModel.calculate()
         }
     }
-    
-    private func makeTransactionViewModel() -> SaveTransactionViewModel {
-        let transactionStore = TransactionStore(inMemory: true,
-                                                with: .tips,
-                                                contextType: .main)
-        let transaction = transactionStore.makeTransaction(amount: amountViewModel.originalAmount.doubleValue ?? 0,
-                                                           tipPercentage: amountViewModel.tipPercentage,
-                                                           tip: amountViewModel.tip,
-                                                           total: amountViewModel.totalAmount.doubleValue ?? 0)
-        return SaveTransactionViewModel(store: transactionStore,
-                                        transaction: transaction)
-    }
 }
 
 
 class SaveTransactionViewModel: ObservableObject {
-    @Published var transaction: Transaction?
-    var store: TransactionStore
+    private(set) var transaction: Transaction
+    private let transactionStore: TransactionStore
     
-    init(store: TransactionStore, transaction: Transaction?) {
-        self.store = store
-        self.transaction = transaction
+    init(amountViewModel: AmountViewModel, transactionStore: TransactionStore) {
+        self.transactionStore = transactionStore
+        self.transaction = Transaction(name: "", from: amountViewModel, in: transactionStore.context!)
     }
     
     func saveTransaction(named name: String) {
-        guard let transaction = transaction else { return }
         transaction.name = name
-        store.save(transaction)
+        transactionStore.save(transaction)
     }
 }
 
 #if DEBUG
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        let amountViewModel = AmountViewModel(totalAmount: "$20.00",
+        let amountViewModel = AmountViewModel(originalAmount: "$20.00",
                                               currencyFormatter: .makeCurrencyFormatter(using: .current))
         return ForEach(ColorScheme.allCases,
                        id: \.self,

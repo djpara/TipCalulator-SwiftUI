@@ -30,8 +30,7 @@ struct SaveTransactionView: View {
                 Spacer()
                 Button(
                     action: {
-                        transactionName = ""
-                        show.toggle()
+                        clear()
                     },
                     label: { Text("Cancel").foregroundColor(.red) }
                 )
@@ -41,6 +40,7 @@ struct SaveTransactionView: View {
                 Button(
                     action: {
                         saveTransactionViewModel.saveTransaction(named: transactionName)
+                        clear()
                     },
                     label: { Text("Save") }
                 )
@@ -55,16 +55,23 @@ struct SaveTransactionView: View {
         )
         .shadow(color: .gray, radius: 5, x: 5, y: 5)
     }
+    
+    private func clear() {
+        transactionName = ""
+        show.toggle()
+    }
 }
 
 
 struct SaveTransactionView_Previews: PreviewProvider {
     static var previews: some View {
-        let transactionStore = TransactionStore(inMemory: false,
-                                                with: .tips,
-                                                contextType: .main)
-        let transaction = Transaction()
-        let viewModel = SaveTransactionViewModel(store: transactionStore, transaction: transaction)
+        let amountViewModel = AmountViewModel(originalAmount: "",
+                                              currencyFormatter: .makeCurrencyFormatter(using: .current))
+        let store = TransactionStore(inMemory: false,
+                                     with: .tips,
+                                     contextType: .main)
+        let viewModel = SaveTransactionViewModel(amountViewModel: amountViewModel,
+                                                 transactionStore: store)
         return SaveTransactionView(show: .constant(true),
                             saveTransactionViewModel: viewModel)
     }

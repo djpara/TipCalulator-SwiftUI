@@ -14,7 +14,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         let numberFormatter = NumberFormatter.makeCurrencyFormatter(using: .current)
-        let amountViewModel = AmountViewModel(totalAmount: "", currencyFormatter: numberFormatter)
+        let amountViewModel = AmountViewModel(originalAmount: "", currencyFormatter: numberFormatter)
         let contentView = ContentView(amountViewModel: amountViewModel)
 
         // Use a UIHostingController as window root view controller.
