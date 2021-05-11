@@ -12,37 +12,28 @@ struct ContentView: View {
     @Environment(\.colorScheme) var colorScheme
     
     @ObservedObject var amountViewModel: AmountViewModel
-    @ObservedObject var tipListViewModel: TipListViewModel
     @ObservedObject var loadAdMonitor = LoadAdMonitor(bannerView: GoogleAdView())
     
     @State private var showEditTipPercentage = false
     @State private var showTipGuide = false
     @State private var showMenuPopover = false
     @State private var showAdvancedView = false
+    @State private var showSaveTransactionPopup = false
     
-    @State var selectedTipPercentage = 0.0
-    @State var customTipPercentage: Double?
+    @State var transactionName: String = ""
     
     var currencyFormatter = NumberFormatter.makeCurrencyFormatter(using: .current)
+    private var popupWidth = UIScreen.main.bounds.width/2
     
-    init(amountViewModel: AmountViewModel, tipListViewModel: TipListViewModel) {
+    init(amountViewModel: AmountViewModel) {
         self.amountViewModel = amountViewModel
-        self.tipListViewModel = tipListViewModel
     }
     
     var body: some View {
-        let billAmoutView = BillAmountView(total: amountViewModel.originalAmount,
-                                           amountViewModel: amountViewModel,
-                                           currencyFormatter: currencyFormatter)
-        let calculationCellView = CalculationsCellView(amountViewModel: amountViewModel,
-                                                       currencyFormatter: currencyFormatter)
-        let tipPercentageSegmentView = TipPercentageSegmentView(tipListViewModel: tipListViewModel,
-                                                                selectedTipPercentage: $selectedTipPercentage,
-                                                                customTipPercentage: $customTipPercentage)
-        let calculateTotalButton = CalculateTotalButton(selectedTipPercentage: $selectedTipPercentage,
-                                                        customTipPercentage: $customTipPercentage,
-                                                        amountViewModel: amountViewModel,
-                                                        currencyFormatter: currencyFormatter)
+        let billAmoutView = BillAmountView(amountViewModel: amountViewModel)
+        let calculationCellView = CalculationsCellView(amountViewModel: amountViewModel)
+        let tipPercentageSegmentView = TipPercentageSegmentView(amountViewModel: amountViewModel)
+        let calculateTotalButton = CalculateTotalButton(amountViewModel: amountViewModel)
         return VStack {
             NavigationView {
                 GeometryReader { geometryWithSafeArea in
@@ -53,18 +44,21 @@ struct ContentView: View {
                                 calculationCellView.padding([.leading, .trailing])
                                 tipPercentageSegmentView.padding([.leading, .trailing])
                                 calculateTotalButton.padding([.leading, .trailing])
-                            }.listSeparatorStyle(style: .none)
-                            .navigationBarTitle("Tips")
+                            }.navigationBarTitle("Tips")
                             .toolbar {
                                 Menu(
                                     content: {
                                         Button(
                                             action: { showTipGuide.toggle() },
-                                            label: { Text("Tip Guide")}
+                                            label: { Label("Tip Guide", systemImage: "map") }
                                         )
                                         Button(
                                             action: { showEditTipPercentage.toggle() },
-                                            label: { Text("Edit Tip Percentages") }
+                                            label: { Label("Edit Tip Percentages", systemImage: "pencil") }
+                                        )
+                                        Button(
+                                            action: { showSaveTransactionPopup.toggle() },
+                                            label: { Label("Save Transaction", systemImage: "square.and.arrow.down") }
                                         )
                                     },
                                     label: {
@@ -83,23 +77,57 @@ struct ContentView: View {
                 }
             }.navigationViewStyle(StackNavigationViewStyle())
             .sheet(isPresented: self.$showEditTipPercentage, content: {
-                EditTipPercentagesView(isPresented: self.$showEditTipPercentage,
-                                       tipListViewModel: self.tipListViewModel)
+                EditTipPercentagesView(isPresented: self.$showEditTipPercentage)
             })
             .sheet(isPresented: self.$showTipGuide, content: {
                 TipGuideView(isPresented: self.$showTipGuide,
-                             selectedTipPercentage: self.$selectedTipPercentage,
-                             customTipPercentage: self.$customTipPercentage)
+                             amountViewModel: amountViewModel)
             })
+            .popup(isPresented: showSaveTransactionPopup) {
+                SaveTransactionView(show: $showSaveTransactionPopup,
+                                    saveTransactionViewModel: makeTransactionViewModel())
+                    .frame(width: 250)
+            }
             loadAdMonitor.bannerView.frame(height: 60)
         }.onAppear {
             UITableView.appearance().tableFooterView = UIView()
             self.loadAdMonitor.startAdRefreshTimer()
         }.onDisappear {
             self.loadAdMonitor.stopAdRefreshTimer()
-        }.onChange(of: customTipPercentage, perform: { value in
-            calculateTotalButton.calculate()
-        })
+        }.onChange(of: self.amountViewModel.tipPercentage) { value in
+            amountViewModel.calculate()
+        }.onChange(of: self.amountViewModel.originalAmount) { value in
+            amountViewModel.calculate()
+        }
+    }
+    
+    private func makeTransactionViewModel() -> SaveTransactionViewModel {
+        let transactionStore = TransactionStore(inMemory: true,
+                                                with: .tips,
+                                                contextType: .main)
+        let transaction = transactionStore.makeTransaction(amount: amountViewModel.originalAmount.doubleValue ?? 0,
+                                                           tipPercentage: amountViewModel.tipPercentage,
+                                                           tip: amountViewModel.tip,
+                                                           total: amountViewModel.totalAmount.doubleValue ?? 0)
+        return SaveTransactionViewModel(store: transactionStore,
+                                        transaction: transaction)
+    }
+}
+
+
+class SaveTransactionViewModel: ObservableObject {
+    @Published var transaction: Transaction?
+    var store: TransactionStore
+    
+    init(store: TransactionStore, transaction: Transaction?) {
+        self.store = store
+        self.transaction = transaction
+    }
+    
+    func saveTransaction(named name: String) {
+        guard let transaction = transaction else { return }
+        transaction.name = name
+        store.save(transaction)
     }
 }
 
@@ -108,7 +136,10 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         let amountViewModel = AmountViewModel(totalAmount: "$20.00",
                                               currencyFormatter: .makeCurrencyFormatter(using: .current))
-        return ForEach(ColorScheme.allCases, id: \.self, content: ContentView(amountViewModel: amountViewModel, tipListViewModel: TipListViewModel()).preferredColorScheme)
+        return ForEach(ColorScheme.allCases,
+                       id: \.self,
+                       content: ContentView(amountViewModel: amountViewModel)
+                        .preferredColorScheme)
     }
 }
 #endif

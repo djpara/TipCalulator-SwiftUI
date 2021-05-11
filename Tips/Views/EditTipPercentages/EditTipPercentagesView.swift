@@ -13,8 +13,8 @@ struct EditTipPercentagesView: View {
     
     var userDefaults = UserDefaults.standard
     
-    var tipListViewModel: TipListViewModel
-    var tipOptions: [TipViewModel] = []
+    var tipConfig: TipConfig
+    var tipOptions: [Tip] = []
     
     private var descriptionTextWidth: CGFloat {
         UIScreen.main.bounds.width/2
@@ -22,16 +22,16 @@ struct EditTipPercentagesView: View {
     
     private var labels = ["Good", "Very good", "Best"]
     
-    init(isPresented: Binding<Bool>, tipListViewModel: TipListViewModel) {
+    init(isPresented: Binding<Bool>, tipConfig: TipConfig = .init()) {
         _isPresented = isPresented
-        self.tipListViewModel = tipListViewModel
+        self.tipConfig = tipConfig
         
-        tipOptions = tipListViewModel.tipOptions.map { TipViewModel(tipPercentage: $0.tipPercentage) }
+        tipOptions = tipConfig.tipOptions.map { Tip(tipPercentage: $0.tipPercentage) }
     }
     
     private func saveTipOptionsToUserDefaults() {
         for (counter, tipOption) in tipOptions.enumerated() {
-            var option: TipListViewModel.Option
+            var option: TipConfig.Option
             
             switch counter {
             case 0:
@@ -57,9 +57,9 @@ struct EditTipPercentagesView: View {
                     .padding([.top], 16)
                     .multilineTextAlignment(.center)
                 List {
-                    ForEach(0..<tipListViewModel.tipOptions.count - 1) {
+                    ForEach(0..<tipConfig.tipOptions.count - 1) {
                         EditTipPercentagesCell(label: labels[$0],
-                                               tipOptions: self.tipListViewModel.tipOptions,
+                                               tipOptions: self.tipConfig.tipOptions,
                                                newTipOptions: self.tipOptions,
                                                atIndex: $0)
                     }.padding([.top, .bottom], 8)
@@ -73,7 +73,7 @@ struct EditTipPercentagesView: View {
                     }),
                     trailing: Button(action: {
                         UIApplication.closeAllKeyboards(.shared)
-                        self.tipListViewModel.tipOptions = self.tipOptions
+                        self.tipConfig.tipOptions = self.tipOptions
                         self.isPresented = false
                         self.saveTipOptionsToUserDefaults()
                     }, label: {
@@ -90,8 +90,7 @@ struct EditTipPercentagesView: View {
 #if DEBUG
 struct EditTipPercentagesView_Previews: PreviewProvider {
     static var previews: some View {
-        let tipListViewModel = TipListViewModel()
-        return EditTipPercentagesView(isPresented: .constant(false), tipListViewModel: tipListViewModel)
+        return EditTipPercentagesView(isPresented: .constant(false))
     }
 }
 #endif

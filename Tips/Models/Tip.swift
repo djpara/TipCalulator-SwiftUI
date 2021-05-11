@@ -1,5 +1,5 @@
 //
-//  TipViewModel.swift
+//  Tip.swift
 //  Tips
 //
 //  Created by David Para on 6/4/20.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class TipViewModel: ObservableObject {
+class Tip: ObservableObject {
     @Published var tipPercentage: Double
     
     init(tipPercentage: Double) {

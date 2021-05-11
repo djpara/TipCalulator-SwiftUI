@@ -1,5 +1,5 @@
 //
-//  TipListViewModel.swift
+//  TipConfig.swift
 //  Tips
 //
 //  Created by David Para on 6/28/20.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-class TipListViewModel: ObservableObject {
+class TipConfig: ObservableObject {
     enum Option: String {
         case first, second, third
     }
@@ -25,17 +25,17 @@ class TipListViewModel: ObservableObject {
         let thirdOption = third == 0 ? 20 : third
         
         tipOptions = [
-            TipViewModel(tipPercentage: firstOption),
-            TipViewModel(tipPercentage: secondOption),
-            TipViewModel(tipPercentage: thirdOption),
-            TipViewModel(tipPercentage: -1)
+            Tip(tipPercentage: firstOption),
+            Tip(tipPercentage: secondOption),
+            Tip(tipPercentage: thirdOption),
+            Tip(tipPercentage: -1)
         ]
     }
     
-    @Published var tipOptions: [TipViewModel] = [
-        TipViewModel(tipPercentage: 15),
-        TipViewModel(tipPercentage: 18),
-        TipViewModel(tipPercentage: 20),
-        TipViewModel(tipPercentage: -1)
+    @Published var tipOptions: [Tip] = [
+        Tip(tipPercentage: 15),
+        Tip(tipPercentage: 18),
+        Tip(tipPercentage: 20),
+        Tip(tipPercentage: -1)
     ]
 }

@@ -12,11 +12,11 @@ struct EditTipPercentagesCell: View {
     var index: Int
     var label: String
     var oldTipOption: String
-    var newTipOptions = [TipViewModel]()
+    var newTipOptions = [Tip]()
     
     @State private var newTipOption: String
     
-    init(label: String, tipOptions: [TipViewModel], newTipOptions: [TipViewModel], atIndex index: Int) {
+    init(label: String, tipOptions: [Tip], newTipOptions: [Tip], atIndex index: Int) {
         self.label = label
         self.index = index
         self.newTipOptions = newTipOptions
@@ -51,7 +51,7 @@ struct EditTipPercentagesCell: View {
 #if DEBUG
 struct EditTipPercentagesCell_Previews: PreviewProvider {
     static var previews: some View {
-        let tipOptions = TipListViewModel().tipOptions
+        let tipOptions = TipConfig().tipOptions
         return EditTipPercentagesCell(label: "Ok", tipOptions: tipOptions, newTipOptions: tipOptions, atIndex: 0)
     }
 }

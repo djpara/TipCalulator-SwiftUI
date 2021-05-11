@@ -12,7 +12,7 @@ struct CalculationsCellView: View {
     @Environment(\.colorScheme) var colorScheme
     
     @ObservedObject var amountViewModel: AmountViewModel
-    var currencyFormatter: NumberFormatter
+    var currencyFormatter: NumberFormatter { amountViewModel.currencyFormatter }
     
     var body: some View {
         VStack {

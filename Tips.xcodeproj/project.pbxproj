@@ -15,7 +15,8 @@
 		4B146C2224AE276C0093CF56 /* ClearTextFieldModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B146C2124AE276C0093CF56 /* ClearTextFieldModifier.swift */; };
 		4B146C2424AE2C1C0093CF56 /* GoButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B146C2324AE2C1C0093CF56 /* GoButtonModifier.swift */; };
 		4B14BB2A24E5ABD30036C198 /* GoogleAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B14BB2924E5ABD30036C198 /* GoogleAdView.swift */; };
-		4B281B3724A87D0000088D2E /* TipListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B281B3624A87D0000088D2E /* TipListViewModel.swift */; };
+		4B281B3724A87D0000088D2E /* TipConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B281B3624A87D0000088D2E /* TipConfig.swift */; };
+		4B373CB72649C7A500F85A04 /* SaveTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B373CB62649C7A500F85A04 /* SaveTransactionView.swift */; };
 		4B4330042480AD8600CFA163 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4330032480AD8600CFA163 /* String+Extensions.swift */; };
 		4B4330092480B75E00CFA163 /* StringExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4330082480B75E00CFA163 /* StringExtensionsTests.swift */; };
 		4B552DE5247B80CA00CF15D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B552DE4247B80CA00CF15D8 /* AppDelegate.swift */; };
@@ -25,7 +26,6 @@
 		4B552DEE247B80CB00CF15D8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B552DED247B80CB00CF15D8 /* Preview Assets.xcassets */; };
 		4B552DF1247B80CB00CF15D8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B552DEF247B80CB00CF15D8 /* LaunchScreen.storyboard */; };
 		4B552E07247B80CB00CF15D8 /* TipsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B552E06247B80CB00CF15D8 /* TipsUITests.swift */; };
-		4B656196264586F000905EA9 /* ListSeparatorStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B656195264586F000905EA9 /* ListSeparatorStyle.swift */; };
 		4B8F9F5B24A8745100E25020 /* EditTipPercentagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8F9F5A24A8745100E25020 /* EditTipPercentagesView.swift */; };
 		4B8F9F5D24A8791C00E25020 /* EditTipPercentagesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8F9F5C24A8791C00E25020 /* EditTipPercentagesCell.swift */; };
 		4BB05FA1248608EA005C0C01 /* BillAmountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB05FA0248608EA005C0C01 /* BillAmountView.swift */; };
@@ -33,7 +33,7 @@
 		4BCF89B324EAF21A00349206 /* LoadAdMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCF89B224EAF21A00349206 /* LoadAdMonitor.swift */; };
 		4BDE9A0F24885F03006B78D8 /* AmountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDE9A0E24885F03006B78D8 /* AmountViewModel.swift */; };
 		4BDE9A13248891B8006B78D8 /* TipPercentageSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDE9A12248891B8006B78D8 /* TipPercentageSegmentView.swift */; };
-		4BDE9A1924893F51006B78D8 /* TipViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDE9A1824893F51006B78D8 /* TipViewModel.swift */; };
+		4BDE9A1924893F51006B78D8 /* Tip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDE9A1824893F51006B78D8 /* Tip.swift */; };
 		4BED90FA247CCE910026A4AD /* AmountViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BED90F9247CCE910026A4AD /* AmountViewModelTests.swift */; };
 		4BED90FD247CD01E0026A4AD /* AmountTotalError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BED90FC247CD01E0026A4AD /* AmountTotalError.swift */; };
 		4BED9105247CE81E0026A4AD /* NumberFormatter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BED9104247CE81E0026A4AD /* NumberFormatter+Extensions.swift */; };
@@ -41,6 +41,11 @@
 		4BEDB40D2496DEF8005F3892 /* SpellOutCurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BEDB40C2496DEF8005F3892 /* SpellOutCurrency.swift */; };
 		4BEDB40F2496DF0F005F3892 /* CurrencySpelledOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BEDB40E2496DF0F005F3892 /* CurrencySpelledOut.swift */; };
 		4BEE58D3257953600050385D /* Pods_Tips.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1538EE6D28BD8A964FA49256 /* Pods_Tips.framework */; };
+		4BEEAA9E2648D74C00E16E7E /* TransactionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BEEAA9D2648D74C00E16E7E /* TransactionStore.swift */; };
+		4BEEAAA72648DCC300E16E7E /* Tips.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4BEEAAA52648DCC300E16E7E /* Tips.xcdatamodeld */; };
+		4BEEAAA92648E38D00E16E7E /* CoreData+Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BEEAAA82648E38D00E16E7E /* CoreData+Persistence.swift */; };
+		4BEEAAAC2648E60600E16E7E /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BEEAAAB2648E60600E16E7E /* Log.swift */; };
+		4BEEAAB826497E3F00E16E7E /* Popup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BEEAAB726497E3F00E16E7E /* Popup.swift */; };
 		4BF3722826439B12008E3785 /* TipGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF3722726439B12008E3785 /* TipGuideView.swift */; };
 		4BF3722C26439F76008E3785 /* TipGuideModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF3722B26439F76008E3785 /* TipGuideModel.swift */; };
 		FE7FCA308613EE236A775D71 /* Pods_TipsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD791560B91218E50B3A477E /* Pods_TipsTests.framework */; };
@@ -74,7 +79,8 @@
 		4B146C2124AE276C0093CF56 /* ClearTextFieldModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearTextFieldModifier.swift; sourceTree = "<group>"; };
 		4B146C2324AE2C1C0093CF56 /* GoButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoButtonModifier.swift; sourceTree = "<group>"; };
 		4B14BB2924E5ABD30036C198 /* GoogleAdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAdView.swift; sourceTree = "<group>"; };
-		4B281B3624A87D0000088D2E /* TipListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipListViewModel.swift; sourceTree = "<group>"; };
+		4B281B3624A87D0000088D2E /* TipConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipConfig.swift; sourceTree = "<group>"; };
+		4B373CB62649C7A500F85A04 /* SaveTransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveTransactionView.swift; sourceTree = "<group>"; };
 		4B4330032480AD8600CFA163 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		4B4330082480B75E00CFA163 /* StringExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensionsTests.swift; sourceTree = "<group>"; };
 		4B552DE1247B80CA00CF15D8 /* Tips: Tip Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tips: Tip Calculator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -90,7 +96,6 @@
 		4B552E02247B80CB00CF15D8 /* TipsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TipsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B552E06247B80CB00CF15D8 /* TipsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipsUITests.swift; sourceTree = "<group>"; };
 		4B552E08247B80CB00CF15D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4B656195264586F000905EA9 /* ListSeparatorStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSeparatorStyle.swift; sourceTree = "<group>"; };
 		4B6BAE3D254C605100A8B8FC /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMobileAds.framework; path = "Pods/Google-Mobile-Ads-SDK/Frameworks/GoogleMobileAdsFramework-Current/GoogleMobileAds.framework"; sourceTree = "<group>"; };
 		4B8F9F5A24A8745100E25020 /* EditTipPercentagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTipPercentagesView.swift; sourceTree = "<group>"; };
 		4B8F9F5C24A8791C00E25020 /* EditTipPercentagesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTipPercentagesCell.swift; sourceTree = "<group>"; };
@@ -99,13 +104,18 @@
 		4BCF89B224EAF21A00349206 /* LoadAdMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadAdMonitor.swift; sourceTree = "<group>"; };
 		4BDE9A0E24885F03006B78D8 /* AmountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountViewModel.swift; sourceTree = "<group>"; };
 		4BDE9A12248891B8006B78D8 /* TipPercentageSegmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipPercentageSegmentView.swift; sourceTree = "<group>"; };
-		4BDE9A1824893F51006B78D8 /* TipViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipViewModel.swift; sourceTree = "<group>"; };
+		4BDE9A1824893F51006B78D8 /* Tip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tip.swift; sourceTree = "<group>"; };
 		4BED90F9247CCE910026A4AD /* AmountViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountViewModelTests.swift; sourceTree = "<group>"; };
 		4BED90FC247CD01E0026A4AD /* AmountTotalError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountTotalError.swift; sourceTree = "<group>"; };
 		4BED9104247CE81E0026A4AD /* NumberFormatter+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NumberFormatter+Extensions.swift"; sourceTree = "<group>"; };
 		4BED9106247CED640026A4AD /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
 		4BEDB40C2496DEF8005F3892 /* SpellOutCurrency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellOutCurrency.swift; sourceTree = "<group>"; };
 		4BEDB40E2496DF0F005F3892 /* CurrencySpelledOut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencySpelledOut.swift; sourceTree = "<group>"; };
+		4BEEAA9D2648D74C00E16E7E /* TransactionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionStore.swift; sourceTree = "<group>"; };
+		4BEEAAA62648DCC300E16E7E /* Tips.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Tips.xcdatamodel; sourceTree = "<group>"; };
+		4BEEAAA82648E38D00E16E7E /* CoreData+Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreData+Persistence.swift"; sourceTree = "<group>"; };
+		4BEEAAAB2648E60600E16E7E /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
+		4BEEAAB726497E3F00E16E7E /* Popup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Popup.swift; sourceTree = "<group>"; };
 		4BF3722726439B12008E3785 /* TipGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipGuideView.swift; sourceTree = "<group>"; };
 		4BF3722B26439F76008E3785 /* TipGuideModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipGuideModel.swift; sourceTree = "<group>"; };
 		522E46D2489BA0E95DDCB4FA /* Pods-Tips.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tips.debug.xcconfig"; path = "Target Support Files/Pods-Tips/Pods-Tips.debug.xcconfig"; sourceTree = "<group>"; };
@@ -158,7 +168,7 @@
 				4B146C1F24AE27130093CF56 /* ClearButtonModifier.swift */,
 				4B146C2124AE276C0093CF56 /* ClearTextFieldModifier.swift */,
 				4B146C2324AE2C1C0093CF56 /* GoButtonModifier.swift */,
-				4B656195264586F000905EA9 /* ListSeparatorStyle.swift */,
+				4BEEAAB726497E3F00E16E7E /* Popup.swift */,
 			);
 			path = ViewModifiers;
 			sourceTree = "<group>";
@@ -196,8 +206,10 @@
 		4B552DE3247B80CA00CF15D8 /* Tips */ = {
 			isa = PBXGroup;
 			children = (
+				4BEEAAAA2648E5FB00E16E7E /* Debugging */,
 				4B552DF2247B80CB00CF15D8 /* Info.plist */,
 				4B552DEA247B80CB00CF15D8 /* Assets.xcassets */,
+				4BEEAAA42648DA7100E16E7E /* CoreData */,
 				4B552E15247B810000CF15D8 /* Delegates */,
 				4BED90FB247CCFF60026A4AD /* Errors */,
 				4BED9101247CDE8F0026A4AD /* Extensions */,
@@ -242,9 +254,12 @@
 		4B552E14247B80F700CF15D8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				4BEDB40B2496DEC4005F3892 /* PropertyWrappers */,
 				4BEDB40E2496DF0F005F3892 /* CurrencySpelledOut.swift */,
+				4B281B3624A87D0000088D2E /* TipConfig.swift */,
+				4BDE9A1824893F51006B78D8 /* Tip.swift */,
 				4BF3722B26439F76008E3785 /* TipGuideModel.swift */,
+				4BEDB40B2496DEC4005F3892 /* PropertyWrappers */,
+				4BEEAA9F2648D77000E16E7E /* Transaction */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -269,6 +284,7 @@
 				4B8F9F5E24A879E000E25020 /* EditTipPercentages */,
 				4BBB455324F759D200BC9197 /* TipPercentage */,
 				4BF3722726439B12008E3785 /* TipGuideView.swift */,
+				4B373CB62649C7A500F85A04 /* SaveTransactionView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -294,8 +310,6 @@
 			isa = PBXGroup;
 			children = (
 				4BDE9A0E24885F03006B78D8 /* AmountViewModel.swift */,
-				4BDE9A1824893F51006B78D8 /* TipViewModel.swift */,
-				4B281B3624A87D0000088D2E /* TipListViewModel.swift */,
 				4BCF89B224EAF21A00349206 /* LoadAdMonitor.swift */,
 			);
 			path = ViewModels;
@@ -342,6 +356,39 @@
 				4BEDB40C2496DEF8005F3892 /* SpellOutCurrency.swift */,
 			);
 			path = PropertyWrappers;
+			sourceTree = "<group>";
+		};
+		4BEEAA9F2648D77000E16E7E /* Transaction */ = {
+			isa = PBXGroup;
+			children = (
+				4BEEAA9D2648D74C00E16E7E /* TransactionStore.swift */,
+			);
+			path = Transaction;
+			sourceTree = "<group>";
+		};
+		4BEEAAA42648DA7100E16E7E /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				4BEEAAB52648F5C400E16E7E /* Transaction */,
+				4BEEAAA52648DCC300E16E7E /* Tips.xcdatamodeld */,
+				4BEEAAA82648E38D00E16E7E /* CoreData+Persistence.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		4BEEAAAA2648E5FB00E16E7E /* Debugging */ = {
+			isa = PBXGroup;
+			children = (
+				4BEEAAAB2648E60600E16E7E /* Log.swift */,
+			);
+			path = Debugging;
+			sourceTree = "<group>";
+		};
+		4BEEAAB52648F5C400E16E7E /* Transaction */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Transaction;
 			sourceTree = "<group>";
 		};
 		554203A0A40DA1E9104E33BE /* Pods */ = {
@@ -571,30 +618,35 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4BEEAAA92648E38D00E16E7E /* CoreData+Persistence.swift in Sources */,
+				4BEEAAAC2648E60600E16E7E /* Log.swift in Sources */,
 				4BF3722C26439F76008E3785 /* TipGuideModel.swift in Sources */,
 				4BEDB40F2496DF0F005F3892 /* CurrencySpelledOut.swift in Sources */,
 				4B552DE5247B80CA00CF15D8 /* AppDelegate.swift in Sources */,
 				4B146C1A24AE08FE0093CF56 /* UIApplication+Extensions.swift in Sources */,
 				4B146C2224AE276C0093CF56 /* ClearTextFieldModifier.swift in Sources */,
 				4B552DE7247B80CA00CF15D8 /* SceneDelegate.swift in Sources */,
-				4BDE9A1924893F51006B78D8 /* TipViewModel.swift in Sources */,
+				4BDE9A1924893F51006B78D8 /* Tip.swift in Sources */,
 				4B146BD824ACE5FF0093CF56 /* CalculateTotalButton.swift in Sources */,
 				4BCF89B324EAF21A00349206 /* LoadAdMonitor.swift in Sources */,
 				4BEDB40D2496DEF8005F3892 /* SpellOutCurrency.swift in Sources */,
-				4B656196264586F000905EA9 /* ListSeparatorStyle.swift in Sources */,
 				4BED9107247CED640026A4AD /* Double+Extensions.swift in Sources */,
 				4B4330042480AD8600CFA163 /* String+Extensions.swift in Sources */,
+				4B373CB72649C7A500F85A04 /* SaveTransactionView.swift in Sources */,
 				4BDE9A13248891B8006B78D8 /* TipPercentageSegmentView.swift in Sources */,
 				4BDE9A0F24885F03006B78D8 /* AmountViewModel.swift in Sources */,
 				4BB05FA1248608EA005C0C01 /* BillAmountView.swift in Sources */,
 				4B8F9F5B24A8745100E25020 /* EditTipPercentagesView.swift in Sources */,
 				4B8F9F5D24A8791C00E25020 /* EditTipPercentagesCell.swift in Sources */,
 				4BF3722826439B12008E3785 /* TipGuideView.swift in Sources */,
+				4BEEAA9E2648D74C00E16E7E /* TransactionStore.swift in Sources */,
 				4B0A9FFE24E9961100D150B2 /* CalculationsCellView.swift in Sources */,
-				4B281B3724A87D0000088D2E /* TipListViewModel.swift in Sources */,
+				4B281B3724A87D0000088D2E /* TipConfig.swift in Sources */,
 				4BED9105247CE81E0026A4AD /* NumberFormatter+Extensions.swift in Sources */,
 				4BED90FD247CD01E0026A4AD /* AmountTotalError.swift in Sources */,
 				4B14BB2A24E5ABD30036C198 /* GoogleAdView.swift in Sources */,
+				4BEEAAB826497E3F00E16E7E /* Popup.swift in Sources */,
+				4BEEAAA72648DCC300E16E7E /* Tips.xcdatamodeld in Sources */,
 				4B552DE9247B80CA00CF15D8 /* ContentView.swift in Sources */,
 				4B146C2424AE2C1C0093CF56 /* GoButtonModifier.swift in Sources */,
 				4B146C2024AE27130093CF56 /* ClearButtonModifier.swift in Sources */,
@@ -968,6 +1020,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		4BEEAAA52648DCC300E16E7E /* Tips.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				4BEEAAA62648DCC300E16E7E /* Tips.xcdatamodel */,
+			);
+			currentVersion = 4BEEAAA62648DCC300E16E7E /* Tips.xcdatamodel */;
+			path = Tips.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 4B552DD9247B80CA00CF15D8 /* Project object */;
 }

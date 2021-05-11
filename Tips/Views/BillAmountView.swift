@@ -12,7 +12,12 @@ struct BillAmountView: View {
     @State var total: String
     
     var amountViewModel: AmountViewModel
-    let currencyFormatter: NumberFormatter
+    var currencyFormatter: NumberFormatter { amountViewModel.currencyFormatter }
+    
+    init(amountViewModel: AmountViewModel) {
+        self.total = amountViewModel.originalAmount
+        self.amountViewModel = amountViewModel
+    }
     
     private func formattedTotal(for double: Double) -> String {
         let hundredth = double / 100
@@ -67,9 +72,7 @@ struct BillAmountView_Previews: PreviewProvider {
     static var previews: some View {
         let amountViewModel = AmountViewModel(totalAmount: "$20.00",
                                               currencyFormatter: .makeCurrencyFormatter(using: .current))
-        return BillAmountView(total: amountViewModel.totalAmount,
-                              amountViewModel: amountViewModel,
-                              currencyFormatter: amountViewModel.currencyFormatter)
+        return BillAmountView(amountViewModel: amountViewModel)
     }
 }
 #endif

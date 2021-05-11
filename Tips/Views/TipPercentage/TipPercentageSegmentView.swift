@@ -11,56 +11,62 @@ import SwiftUI
 struct TipPercentageSegmentView: View {
     @Environment(\.colorScheme) var colorScheme
     
-    @ObservedObject var tipListViewModel: TipListViewModel
-    @Binding var selectedTipPercentage: Double
-    @Binding var customTipPercentage: Double?
-    @State private(set) var showCustomized = false
+    @ObservedObject var amountViewModel: AmountViewModel
+    @ObservedObject var tipConfig: TipConfig
+    
+    @State private var selectedSegmentValue: Double = 0
+    @State private var showCustomized = false
+    
+    init(amountViewModel: AmountViewModel, tipConfig: TipConfig = .init()) {
+        self.amountViewModel = amountViewModel
+        self.tipConfig = tipConfig
+    }
     
     var body: some View {
         let customBinding = Binding<String>(
             get: {
-                guard let customTipPercentage = customTipPercentage else { return "" }
-                return "\(Int(customTipPercentage))"
+                if amountViewModel.tipPercentage < 1 { return "" }
+                return "\(Int(amountViewModel.tipPercentage))"
             },
             set: {
-                selectedTipPercentage = -1
-                customTipPercentage = Double($0.replacingOccurrences(of: "%", with: ""))
+                amountViewModel.tipPercentage = Double($0) ?? 0
             }
         )
         
         let selectedBinding = Binding<Double>(
-            get: { selectedTipPercentage },
+            get: {
+                selectedSegmentValue
+            },
             set: {
-                customTipPercentage = nil
-                selectedTipPercentage = $0
+                amountViewModel.tipPercentage = $0 < 1 ? 0 : $0
+                selectedSegmentValue = $0
             }
         )
         
         return VStack {
             Picker("", selection: selectedBinding) {
-                ForEach(tipListViewModel.tipOptions, id: \.tipPercentage) { tipViewModel in
+                ForEach(tipConfig.tipOptions, id: \.tipPercentage) { tipViewModel in
                     Text(self.getTipPercentage(for: tipViewModel))
                 }
             }.pickerStyle(SegmentedPickerStyle())
             if showCustomized {
                 HStack {
-                    ZStack {
-                        TextField("Custom Tip %", text: customBinding)
-                            .keyboardType(.numberPad)
-                            .multilineTextAlignment(.center)
-                            .accentColor(colorScheme == .dark ? .white : .black)
-                    }
-                    if customTipPercentage != nil { Text("%") }
-                }.padding([.top], 8)
+                    TextField("Custom Tip %", text: customBinding)
+                        .keyboardType(.numberPad)
+                        .multilineTextAlignment(.center)
+                        .font(.footnote)
+                        .accentColor(colorScheme == .dark ? .white : .black)
+                    if !customBinding.wrappedValue.isEmpty { Text("%").font(.footnote) }
+                }.padding([.top, .bottom], 8)
             }
-        }.onChange(of: selectedTipPercentage, perform: { value in
+        }.onChange(of: selectedSegmentValue, perform: { value in
             withAnimation {
                 showCustomized = value == -1
             }
         }).transition(.slide)
     }
     
-    func getTipPercentage(for tipViewModel: TipViewModel) -> String {
+    private func getTipPercentage(for tipViewModel: Tip) -> String {
         if tipViewModel.tipPercentage == -1 { return "Other" }
         return String(format: "%.f%@", tipViewModel.tipPercentage, "%")
     }
@@ -69,9 +75,9 @@ struct TipPercentageSegmentView: View {
 #if DEBUG
 struct TipPercentageCellView_Previews: PreviewProvider {
     static var previews: some View {
-        TipPercentageSegmentView(tipListViewModel: TipListViewModel(),
-                                 selectedTipPercentage: .constant(15),
-                                 customTipPercentage: .constant(0))
+        let amountViewModel = AmountViewModel(totalAmount: "",
+                                              currencyFormatter: .makeCurrencyFormatter(using: .current))
+        TipPercentageSegmentView(amountViewModel: amountViewModel)
     }
 }
 #endif

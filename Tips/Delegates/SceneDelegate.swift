@@ -15,10 +15,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         let numberFormatter = NumberFormatter.makeCurrencyFormatter(using: .current)
         let amountViewModel = AmountViewModel(totalAmount: "", currencyFormatter: numberFormatter)
-        let tipListViewModel = TipListViewModel()
-        let contentView = ContentView(amountViewModel: amountViewModel,
-                                      tipListViewModel: tipListViewModel)
-        contentView.selectedTipPercentage = tipListViewModel.tipOptions[1].tipPercentage
+        let contentView = ContentView(amountViewModel: amountViewModel)
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {

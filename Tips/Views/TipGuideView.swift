@@ -14,14 +14,12 @@ struct TipGuideView: View {
         UIScreen.main.bounds.width/2
     }
     
+    private let amountViewModel: AmountViewModel
     @Binding var isPresented: Bool
-    @Binding var selectedTipPercentage: Double
-    @Binding var customTipPercentage: Double?
     
-    init(isPresented: Binding<Bool>, selectedTipPercentage: Binding<Double>, customTipPercentage: Binding<Double?>) {
+    init(isPresented: Binding<Bool>, amountViewModel: AmountViewModel) {
         _isPresented = isPresented
-        _selectedTipPercentage = selectedTipPercentage
-        _customTipPercentage = customTipPercentage
+        self.amountViewModel = amountViewModel
     }
     
     var body: some View {
@@ -39,9 +37,8 @@ struct TipGuideView: View {
                               spacing: 32) {
                         ForEach(0..<Services.list.count) {
                             ServiceView(isPresented: $isPresented,
-                                        selectedTipPercentage: $selectedTipPercentage,
-                                        customTipPercentage: $customTipPercentage,
-                                        service: services[$0])
+                                        service: services[$0],
+                                        amountViewModel: amountViewModel)
                         }
                     }.padding()
                 }
@@ -60,10 +57,9 @@ struct TipGuideView: View {
 
 struct ServiceView: View {
     @Binding var isPresented: Bool
-    @Binding var selectedTipPercentage: Double
-    @Binding var customTipPercentage: Double?
     
-    var service: TipGuideModel
+    let service: TipGuideModel
+    let amountViewModel: AmountViewModel
     
     var body: some View {
         VStack {
@@ -74,8 +70,7 @@ struct ServiceView: View {
                     .frame(width: 44, height: 44)
                     .padding()
                     .onTapGesture {
-                        selectedTipPercentage = -1
-                        customTipPercentage = service.min
+                        amountViewModel.tipPercentage = service.min ?? 0
                         isPresented.toggle()
                     }
             }
@@ -90,8 +85,8 @@ struct ServiceView: View {
 
 struct TipGuideView_Previews: PreviewProvider {
     static var previews: some View {
-        TipGuideView(isPresented: .constant(true),
-                     selectedTipPercentage: .constant(0),
-                     customTipPercentage: .constant(0))
+        let amountViewModel = AmountViewModel(totalAmount: "",
+                                              currencyFormatter: .makeCurrencyFormatter(using: .current))
+        TipGuideView(isPresented: .constant(true), amountViewModel: amountViewModel)
     }
 }

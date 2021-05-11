@@ -10,6 +10,7 @@ import Foundation
 
 class AmountViewModel: ObservableObject {
     @Published var totalAmount: String
+    @Published var tipPercentage: Double
     
     var originalAmount: String
     var tip: Double
@@ -18,9 +19,10 @@ class AmountViewModel: ObservableObject {
     
     init(totalAmount: String, currencyFormatter: NumberFormatter) {
         self.totalAmount = "$0.00"
-        self.originalAmount = totalAmount
-        self.tip = 0
         self.currencyFormatter = currencyFormatter
+        originalAmount = totalAmount
+        tipPercentage = 0
+        tip = 0
         
         if let number = self.convertToDouble(totalAmount)?.nsNumberValue, number != 0 {
             self.totalAmount = currencyFormatter.string(from: number) ?? ""
@@ -51,5 +53,16 @@ class AmountViewModel: ObservableObject {
         }
         
         return nil
+    }
+    
+    func calculate() {
+        let totalAmount = originalAmount.convertCurrencyToDouble(using: self.currencyFormatter)
+        guard totalAmount != 0 else { return }
+//        var tipPercentage: Double? = selectedTipPercentage > 0 ? selectedTipPercentage : 0
+//        tipPercentage = customTipPercentage ?? 0 <= 0
+//            ? tipPercentage
+//            : customTipPercentage
+        tip = totalAmount * (tipPercentage / 100)
+        try? add(tip)
     }
 }
