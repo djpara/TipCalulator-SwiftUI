@@ -25,7 +25,7 @@ struct TipPercentageSegmentView: View {
     var body: some View {
         let customBinding = Binding<String>(
             get: {
-                if amountViewModel.tipPercentage < 1 { return "" }
+                if amountViewModel.tipPercentage < 1 || selectedSegmentValue > -1 { return "" }
                 return "\(Int(amountViewModel.tipPercentage))"
             },
             set: {

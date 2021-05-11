@@ -58,10 +58,6 @@ class AmountViewModel: ObservableObject {
     func calculate() {
         let totalAmount = originalAmount.convertCurrencyToDouble(using: self.currencyFormatter)
         guard totalAmount != 0 else { return }
-//        var tipPercentage: Double? = selectedTipPercentage > 0 ? selectedTipPercentage : 0
-//        tipPercentage = customTipPercentage ?? 0 <= 0
-//            ? tipPercentage
-//            : customTipPercentage
         tip = totalAmount * (tipPercentage / 100)
         try? add(tip)
     }
