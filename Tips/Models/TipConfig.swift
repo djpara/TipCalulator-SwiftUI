@@ -13,6 +13,13 @@ class TipConfig: ObservableObject {
         case first, second, third
     }
     
+    @Published var tipOptions: [Tip] = [
+        Tip(tipPercentage: 15),
+        Tip(tipPercentage: 18),
+        Tip(tipPercentage: 20),
+        Tip(tipPercentage: -1)
+    ]
+    
     var userDefaults = UserDefaults.standard
     
     init() {
@@ -31,11 +38,4 @@ class TipConfig: ObservableObject {
             Tip(tipPercentage: -1)
         ]
     }
-    
-    @Published var tipOptions: [Tip] = [
-        Tip(tipPercentage: 15),
-        Tip(tipPercentage: 18),
-        Tip(tipPercentage: 20),
-        Tip(tipPercentage: -1)
-    ]
 }

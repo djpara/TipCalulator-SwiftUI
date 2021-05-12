@@ -22,7 +22,7 @@ struct EditTipPercentagesView: View {
     
     private var labels = ["Good", "Very good", "Best"]
     
-    init(isPresented: Binding<Bool>, tipConfig: TipConfig = .init()) {
+    init(isPresented: Binding<Bool>, tipConfig: TipConfig) {
         _isPresented = isPresented
         self.tipConfig = tipConfig
         
@@ -49,48 +49,37 @@ struct EditTipPercentagesView: View {
     }
 
     var body: some View {
-        NavigationView {
-            VStack {
-                Text("How much do you tip for quality of service?")
-                    .frame(width: descriptionTextWidth)
-                    .font(.caption)
-                    .padding([.top], 16)
-                    .multilineTextAlignment(.center)
-                List {
-                    ForEach(0..<tipConfig.tipOptions.count - 1) {
-                        EditTipPercentagesCell(label: labels[$0],
-                                               tipOptions: self.tipConfig.tipOptions,
-                                               newTipOptions: self.tipOptions,
-                                               atIndex: $0)
-                    }.padding([.top, .bottom], 8)
-                }.navigationBarTitle("Tips 💸", displayMode: .inline)
-                .navigationBarItems(
-                    leading: Button(action: {
-                        UIApplication.closeAllKeyboards(.shared)
-                        self.isPresented = false
-                    }, label: {
-                        Image(systemName: "xmark")
-                    }),
-                    trailing: Button(action: {
-                        UIApplication.closeAllKeyboards(.shared)
-                        self.tipConfig.tipOptions = self.tipOptions
-                        self.isPresented = false
-                        self.saveTipOptionsToUserDefaults()
-                    }, label: {
-                        Text("Save")
-                    }))
-                .onAppear {
-                    UITableView.appearance().tableFooterView = UIView()
-                }
+        VStack {
+            Text("How much do you tip for quality of service?")
+                .frame(width: descriptionTextWidth)
+                .font(.caption)
+                .padding([.top], 16)
+                .multilineTextAlignment(.center)
+            List {
+                ForEach(0..<tipConfig.tipOptions.count - 1) {
+                    EditTipPercentagesCell(label: labels[$0],
+                                           tipOptions: self.tipConfig.tipOptions,
+                                           newTipOptions: self.tipOptions,
+                                           atIndex: $0)
+                }.padding([.top, .bottom], 8)
+            }.navigationBarTitle("Tips 💸", displayMode: .inline)
+            .onAppear {
+                UITableView.appearance().tableFooterView = UIView()
             }
-        }.navigationViewStyle(StackNavigationViewStyle())
+            .onDisappear {
+                UIApplication.closeAllKeyboards(.shared)
+                self.saveTipOptionsToUserDefaults()
+                self.tipConfig.tipOptions = self.tipOptions
+            }
+        }
     }
 }
 
 #if DEBUG
 struct EditTipPercentagesView_Previews: PreviewProvider {
     static var previews: some View {
-        return EditTipPercentagesView(isPresented: .constant(false))
+        return EditTipPercentagesView(isPresented: .constant(false),
+                                      tipConfig: TipConfig())
     }
 }
 #endif

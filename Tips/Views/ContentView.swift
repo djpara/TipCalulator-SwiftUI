@@ -12,6 +12,7 @@ import SwiftUI
 struct ContentView: View {
     @Environment(\.colorScheme) var colorScheme
     
+    @ObservedObject var tipConfig = TipConfig()
     @ObservedObject var amountViewModel: AmountViewModel
     @ObservedObject var loadAdMonitor = LoadAdMonitor(bannerView: GoogleAdView())
     
@@ -42,6 +43,8 @@ struct ContentView: View {
         let calculateTotalButton = CalculateTotalButton(amountViewModel: amountViewModel)
         let savedTransactionsView = SavedTransactionsView(transactionStore: transactionStore)
             .environment(\.managedObjectContext, transactionStore.persistentContainer.viewContext)
+        let editTipPercentagesView = EditTipPercentagesView(isPresented: self.$showEditTipPercentage,
+                                                            tipConfig: tipConfig)
         return VStack {
             NavigationView {
                 GeometryReader { geometryWithSafeArea in
@@ -49,6 +52,8 @@ struct ContentView: View {
                         ScrollView {
                             NavigationLink(destination: savedTransactionsView,
                                            isActive: $showSavedTransactions) { }
+                            NavigationLink(destination: editTipPercentagesView,
+                                           isActive: $showEditTipPercentage) { }
                             LazyVStack {
                                 billAmoutView.padding([.leading, .trailing])
                                 calculationCellView.padding([.leading, .trailing])
@@ -90,13 +95,10 @@ struct ContentView: View {
                     }.edgesIgnoringSafeArea(.all)
                 }
             }.navigationViewStyle(StackNavigationViewStyle())
-            .sheet(isPresented: self.$showEditTipPercentage, content: {
-                EditTipPercentagesView(isPresented: self.$showEditTipPercentage)
-            })
-            .sheet(isPresented: self.$showTipGuide, content: {
+            .sheet(isPresented: self.$showTipGuide) {
                 TipGuideView(isPresented: self.$showTipGuide,
                              amountViewModel: amountViewModel)
-            })
+            }
             .popup(isPresented: showSaveTransactionPopup) {
                 makeSaveTransactionView()
                     .frame(width: 250)
@@ -104,6 +106,7 @@ struct ContentView: View {
             loadAdMonitor.bannerView.frame(height: 60)
         }.onAppear {
             UITableView.appearance().tableFooterView = UIView()
+            
             self.loadAdMonitor.startAdRefreshTimer()
         }.onDisappear {
             self.loadAdMonitor.stopAdRefreshTimer()
