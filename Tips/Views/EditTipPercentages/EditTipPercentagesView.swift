@@ -62,7 +62,7 @@ struct EditTipPercentagesView: View {
                                            newTipOptions: self.tipOptions,
                                            atIndex: $0)
                 }.padding([.top, .bottom], 8)
-            }.navigationBarTitle("Tips 💸", displayMode: .inline)
+            }
             .onAppear {
                 UITableView.appearance().tableFooterView = UIView()
             }
@@ -71,7 +71,8 @@ struct EditTipPercentagesView: View {
                 self.saveTipOptionsToUserDefaults()
                 self.tipConfig.tipOptions = self.tipOptions
             }
-        }
+        }.navigationTitle(Text("Tip Percentages"))
+        .navigationBarTitle("Tips")
     }
 }
 

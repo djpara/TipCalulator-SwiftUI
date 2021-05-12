@@ -56,7 +56,7 @@ struct SaveTransactionView: View {
             RoundedRectangle(cornerRadius: 8)
                 .stroke(lineWidth: 0.25)
         )
-        .shadow(color: colorScheme == .dark ? .clear : .gray, radius: 8, x: 10, y: 10)
+        .shadow(color: colorScheme == .dark ? .clear : .gray, radius: 8, x: 1, y: 1)
     }
 
     private func clear() {

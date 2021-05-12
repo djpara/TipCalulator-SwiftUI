@@ -13,7 +13,14 @@ struct SavedTransactionsView: View {
     @Environment(\.managedObjectContext) var context
     @Environment(\.colorScheme) var colorScheme
     
+    @State private var showDetails = false
+    @State private var selectedTransaction: Transaction? = nil
+    
     var transactionStore: TransactionStore
+    
+    private var descriptionTextWidth: CGFloat {
+        UIScreen.main.bounds.width/2
+    }
     
     @FetchRequest(
         entity: Transaction.entity(),
@@ -21,18 +28,37 @@ struct SavedTransactionsView: View {
     ) var transactions: FetchedResults<Transaction>
     
     var body: some View {
-        List {
-            ForEach(transactions) { transaction in
-                SavedTransactionCell(transaction: transaction)
-                    .padding(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
+        VStack {
+            List {
+                ForEach(transactions) { transaction in
+                    HStack {
+                        SavedTransactionCell(transaction: transaction)
+                        Button(action: {
+                            selectedTransaction = transaction
+                            showDetails.toggle()
+                        }, label: {
+                            Image(systemName: "info.circle").foregroundColor(.blue)
+                        })
+                        .buttonStyle(PlainButtonStyle())
+                    }
+                    .padding(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 8))
                     .listRowInsets(EdgeInsets())
                     .background(colorScheme == .dark ? Color.black : Color.white)
+                }
+                .onDelete {
+                    transactionStore
+                        .delete(at: $0, in: transactions, context: context)
+                }
             }
-            .onDelete {
-                transactionStore
-                    .delete(at: $0, in: transactions, context: context)
-            }
-        }.navigationTitle(Text("Saved Transactions"))
+            .navigationTitle(Text("Saved Transactions"))
+        }
+        .popup(isPresented: selectedTransaction != nil,
+               alignment: .center,
+               direction: .bottom,
+               content: {
+                TransactionDetailsView(transaction: $selectedTransaction)
+                    .frame(width: 300, alignment: .center)
+               })
     }
 }
 

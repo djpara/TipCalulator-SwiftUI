@@ -2,7 +2,7 @@
 //  Transaction+CoreDataProperties.swift
 //  Tips
 //
-//  Created by David Para on 5/11/21.
+//  Created by David Para on 5/12/21.
 //  Copyright © 2021 David Para. All rights reserved.
 //
 //
@@ -18,12 +18,13 @@ extension Transaction {
     }
 
     @NSManaged public var amount: String?
+    @NSManaged public var dateAdded: Date?
     @NSManaged public var id: UUID?
     @NSManaged public var name: String?
     @NSManaged public var tip: Double
     @NSManaged public var tipPercentage: Double
     @NSManaged public var total: String?
-    @NSManaged public var dateAdded: Date?
+    @NSManaged public var moreDetails: String?
 
 }
 

@@ -15,6 +15,8 @@
 		4B146C2224AE276C0093CF56 /* ClearTextFieldModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B146C2124AE276C0093CF56 /* ClearTextFieldModifier.swift */; };
 		4B146C2424AE2C1C0093CF56 /* GoButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B146C2324AE2C1C0093CF56 /* GoButtonModifier.swift */; };
 		4B14BB2A24E5ABD30036C198 /* GoogleAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B14BB2924E5ABD30036C198 /* GoogleAdView.swift */; };
+		4B232217264C568D00C7B083 /* View+Conditional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B232216264C568D00C7B083 /* View+Conditional.swift */; };
+		4B23221A264C67AC00C7B083 /* TransactionDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B232219264C67AC00C7B083 /* TransactionDetailsView.swift */; };
 		4B281B3724A87D0000088D2E /* TipConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B281B3624A87D0000088D2E /* TipConfig.swift */; };
 		4B373CB72649C7A500F85A04 /* SaveTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B373CB62649C7A500F85A04 /* SaveTransactionView.swift */; };
 		4B373CBD264AC15E00F85A04 /* StoreFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B373CBC264AC15E00F85A04 /* StoreFactory.swift */; };
@@ -86,6 +88,8 @@
 		4B146C2124AE276C0093CF56 /* ClearTextFieldModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearTextFieldModifier.swift; sourceTree = "<group>"; };
 		4B146C2324AE2C1C0093CF56 /* GoButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoButtonModifier.swift; sourceTree = "<group>"; };
 		4B14BB2924E5ABD30036C198 /* GoogleAdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAdView.swift; sourceTree = "<group>"; };
+		4B232216264C568D00C7B083 /* View+Conditional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Conditional.swift"; sourceTree = "<group>"; };
+		4B232219264C67AC00C7B083 /* TransactionDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetailsView.swift; sourceTree = "<group>"; };
 		4B281B3624A87D0000088D2E /* TipConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipConfig.swift; sourceTree = "<group>"; };
 		4B373CB62649C7A500F85A04 /* SaveTransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveTransactionView.swift; sourceTree = "<group>"; };
 		4B373CBC264AC15E00F85A04 /* StoreFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreFactory.swift; sourceTree = "<group>"; };
@@ -187,11 +191,24 @@
 			path = ViewModifiers;
 			sourceTree = "<group>";
 		};
+		4B232218264C572700C7B083 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				4BB05FA0248608EA005C0C01 /* BillAmountView.swift */,
+				4B146BD724ACE5FF0093CF56 /* CalculateTotalButton.swift */,
+				4B0A9FFD24E9961100D150B2 /* CalculationsCellView.swift */,
+				4B552DE8247B80CA00CF15D8 /* ContentView.swift */,
+				4B14BB2924E5ABD30036C198 /* GoogleAdView.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
 		4B373CC6264B300F00F85A04 /* SavedTransactions */ = {
 			isa = PBXGroup;
 			children = (
 				4B373CC2264B286B00F85A04 /* SavedTransactionsView.swift */,
 				4B373CC4264B300B00F85A04 /* SavedTransactionCell.swift */,
+				4B232219264C67AC00C7B083 /* TransactionDetailsView.swift */,
 			);
 			path = SavedTransactions;
 			sourceTree = "<group>";
@@ -300,11 +317,7 @@
 		4B552E16247B814700CF15D8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				4BB05FA0248608EA005C0C01 /* BillAmountView.swift */,
-				4B146BD724ACE5FF0093CF56 /* CalculateTotalButton.swift */,
-				4B0A9FFD24E9961100D150B2 /* CalculationsCellView.swift */,
-				4B552DE8247B80CA00CF15D8 /* ContentView.swift */,
-				4B14BB2924E5ABD30036C198 /* GoogleAdView.swift */,
+				4B232218264C572700C7B083 /* Main */,
 				4B373CB62649C7A500F85A04 /* SaveTransactionView.swift */,
 				4BF3722726439B12008E3785 /* TipGuideView.swift */,
 				4B8F9F5E24A879E000E25020 /* EditTipPercentages */,
@@ -373,6 +386,7 @@
 				4BED9106247CED640026A4AD /* Double+Extensions.swift */,
 				4B4330032480AD8600CFA163 /* String+Extensions.swift */,
 				4B146C1924AE08FE0093CF56 /* UIApplication+Extensions.swift */,
+				4B232216264C568D00C7B083 /* View+Conditional.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -666,6 +680,7 @@
 				4BF3722826439B12008E3785 /* TipGuideView.swift in Sources */,
 				4BEEAA9E2648D74C00E16E7E /* TransactionStore.swift in Sources */,
 				4B0A9FFE24E9961100D150B2 /* CalculationsCellView.swift in Sources */,
+				4B232217264C568D00C7B083 /* View+Conditional.swift in Sources */,
 				4B281B3724A87D0000088D2E /* TipConfig.swift in Sources */,
 				4BED9105247CE81E0026A4AD /* NumberFormatter+Extensions.swift in Sources */,
 				4B373CC3264B286B00F85A04 /* SavedTransactionsView.swift in Sources */,
@@ -676,6 +691,7 @@
 				4B373CC0264B25B600F85A04 /* Transaction+CoreDataClass.swift in Sources */,
 				4B373CC1264B25B600F85A04 /* Transaction+CoreDataProperties.swift in Sources */,
 				4B552DE9247B80CA00CF15D8 /* ContentView.swift in Sources */,
+				4B23221A264C67AC00C7B083 /* TransactionDetailsView.swift in Sources */,
 				4B146C2424AE2C1C0093CF56 /* GoButtonModifier.swift in Sources */,
 				4B146C2024AE27130093CF56 /* ClearButtonModifier.swift in Sources */,
 			);
