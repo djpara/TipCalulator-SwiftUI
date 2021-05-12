@@ -8,26 +8,6 @@
 
 import CoreData
 
-enum ManagedObjectContextType {
-    case main
-    case background
-    case custom(NSManagedObjectContext)
-}
-
 extension NSPersistentContainer {
     static var tips = NSPersistentContainer(name: "Tips")
-}
-
-extension NSManagedObjectContext {
-    static func context(for type: ManagedObjectContextType,
-                        container: NSPersistentContainer) -> NSManagedObjectContext {
-        switch type {
-        case .main:
-            return container.viewContext
-        case .background:
-            return container.newBackgroundContext()
-        case .custom(let context):
-            return context
-        }
-    }
 }

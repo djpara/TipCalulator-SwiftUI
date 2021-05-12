@@ -8,24 +8,52 @@
 
 import CoreData.NSPersistentContainer
 import Foundation
+import SwiftUI
 
 protocol Store {
-    associatedtype T
+    associatedtype T: NSManagedObject
     
-    init(inMemory: Bool, with: NSPersistentContainer, contextType: ManagedObjectContextType)
-    func get(byID id: UUID) -> T?
-    func save(_ model: T)
+    var persistentContainer: NSPersistentContainer { get set }
+    
+    init()
+    init(persistentContainer: NSPersistentContainer,
+         inMemory: Bool)
+    
+    func get(byID id: UUID, context: NSManagedObjectContext) -> T?
+    func save(_ model: T, context: NSManagedObjectContext)
+    func delete(at offsets: IndexSet,
+                in models: FetchedResults<T>,
+                context: NSManagedObjectContext)
+}
+
+extension Store {
+    func delete(at offsets: IndexSet,
+                in models: FetchedResults<T>,
+                context: NSManagedObjectContext) {
+        for index in offsets {
+            let model = models[index]
+            context.delete(model)
+        }
+        
+        do {
+            try context.save()
+        } catch let error {
+            Log.error(message: "Error deleting \(T.self): \(error)")
+        }
+    }
 }
 
 class StoreFactory {
     enum StoryType {
-        case transaction
+        case transaction, transactionMock
     }
     
-    func make<T: Store>(_ type: StoryType, inMemory: Bool, context: ManagedObjectContextType) -> T {
+    func make<T: Store>(_ type: StoryType) -> T {
         switch type {
         case .transaction:
-            return T(inMemory: inMemory, with: .tips, contextType: .main)
+            return T(persistentContainer: .tips, inMemory: false)
+        case .transactionMock:
+            return T()
         }
     }
 }

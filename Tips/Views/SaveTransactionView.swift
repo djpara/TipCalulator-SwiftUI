@@ -6,15 +6,18 @@
 //  Copyright © 2021 David Para. All rights reserved.
 //
 
+import CoreData
 import SwiftUI
 
 struct SaveTransactionView: View {
+    @Environment(\.colorScheme) var colorScheme
+    
     @State var transactionName: String = ""
-    
+
     @Binding var show: Bool
-    
+
     var saveTransactionViewModel: SaveTransactionViewModel
-    
+
     var body: some View {
         VStack {
             Text("File away as")
@@ -47,32 +50,39 @@ struct SaveTransactionView: View {
                 Spacer()
             }.padding([.bottom], 8)
         }
-        .background(Color.init(.white))
+        .background(colorScheme == .dark ? Color.black : Color.white)
         .cornerRadius(8)
         .overlay(
             RoundedRectangle(cornerRadius: 8)
                 .stroke(lineWidth: 0.25)
         )
-        .shadow(color: .gray, radius: 5, x: 5, y: 5)
+        .shadow(color: colorScheme == .dark ? .clear : .gray, radius: 8, x: 10, y: 10)
     }
-    
+
     private func clear() {
+        UIApplication.closeAllKeyboards(.shared)
         transactionName = ""
         show.toggle()
     }
 }
 
 
+#if DEBUG
 struct SaveTransactionView_Previews: PreviewProvider {
     static var previews: some View {
-        let amountViewModel = AmountViewModel(originalAmount: "",
-                                              currencyFormatter: .makeCurrencyFormatter(using: .current))
-        let store = TransactionStore(inMemory: false,
-                                     with: .tips,
-                                     contextType: .main)
-        let viewModel = SaveTransactionViewModel(amountViewModel: amountViewModel,
+        let store = TransactionStoreMock()
+        let context = NSPersistentContainer.tips.viewContext
+        let aViewModel = AmountViewModel(originalAmount: "$20.00",
+                                         currencyFormatter: .makeCurrencyFormatter(using: .current))
+        let sViewModel = SaveTransactionViewModel(amountViewModel: aViewModel,
                                                  transactionStore: store)
-        return SaveTransactionView(show: .constant(true),
-                            saveTransactionViewModel: viewModel)
+        return ForEach(ColorScheme.allCases,
+                       id: \.self,
+                       content: SaveTransactionView(show: .constant(true),
+                                                    saveTransactionViewModel: sViewModel)
+                        .frame(width: 250, height: 100)
+                        .environment(\.managedObjectContext, context)
+                        .preferredColorScheme)
     }
 }
+#endif

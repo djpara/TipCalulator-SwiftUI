@@ -6,6 +6,7 @@
 //  Copyright © 2020 David Para. All rights reserved.
 //
 
+import CoreData
 import SwiftUI
 
 struct ContentView: View {
@@ -20,15 +21,18 @@ struct ContentView: View {
     @State private var showAdvancedView = false
     @State private var showSaveTransactionPopup = false
     
+    @State private var showSavedTransactions = false
+    
     @State var transactionName: String = ""
     
     var currencyFormatter = NumberFormatter.makeCurrencyFormatter(using: .current)
     private let popupWidth = UIScreen.main.bounds.width/2
     private let transactionStore: TransactionStore
     
-    init(amountViewModel: AmountViewModel, storeFactory: StoreFactory = StoreFactory()) {
+    init(amountViewModel: AmountViewModel,
+         transactionStore: TransactionStore = StoreFactory().make(.transaction)) {
         self.amountViewModel = amountViewModel
-        self.transactionStore = storeFactory.make(.transaction, inMemory: true, context: .main)
+        self.transactionStore = transactionStore
     }
     
     var body: some View {
@@ -36,11 +40,15 @@ struct ContentView: View {
         let calculationCellView = CalculationsCellView(amountViewModel: amountViewModel)
         let tipPercentageSegmentView = TipPercentageSegmentView(amountViewModel: amountViewModel)
         let calculateTotalButton = CalculateTotalButton(amountViewModel: amountViewModel)
+        let savedTransactionsView = SavedTransactionsView(transactionStore: transactionStore)
+            .environment(\.managedObjectContext, transactionStore.persistentContainer.viewContext)
         return VStack {
             NavigationView {
                 GeometryReader { geometryWithSafeArea in
                     GeometryReader { geometry in
                         ScrollView {
+                            NavigationLink(destination: savedTransactionsView,
+                                           isActive: $showSavedTransactions) { }
                             LazyVStack {
                                 billAmoutView.padding([.leading, .trailing])
                                 calculationCellView.padding([.leading, .trailing])
@@ -56,7 +64,11 @@ struct ContentView: View {
                                         )
                                         Button(
                                             action: { showEditTipPercentage.toggle() },
-                                            label: { Label("Edit Tip Percentages", systemImage: "pencil") }
+                                            label: { Label("Edit Tip Percentages", systemImage: "percent") }
+                                        )
+                                        Button(
+                                            action: { showSavedTransactions.toggle() },
+                                            label: { Label("Saved Transactions", systemImage: "folder") }
                                         )
                                         Button(
                                             action: { showSaveTransactionPopup.toggle() },
@@ -86,10 +98,7 @@ struct ContentView: View {
                              amountViewModel: amountViewModel)
             })
             .popup(isPresented: showSaveTransactionPopup) {
-                let viewModel = SaveTransactionViewModel(amountViewModel: amountViewModel,
-                                                         transactionStore: transactionStore)
-                SaveTransactionView(show: $showSaveTransactionPopup,
-                                    saveTransactionViewModel: viewModel)
+                makeSaveTransactionView()
                     .frame(width: 250)
             }
             loadAdMonitor.bannerView.frame(height: 60)
@@ -104,32 +113,27 @@ struct ContentView: View {
             amountViewModel.calculate()
         }
     }
+    
+    private func makeSaveTransactionView() -> SaveTransactionView {
+        let viewModel = SaveTransactionViewModel(amountViewModel: amountViewModel, transactionStore: transactionStore)
+        return SaveTransactionView(show: $showSaveTransactionPopup, saveTransactionViewModel: viewModel)
+    }
 }
 
 
-class SaveTransactionViewModel: ObservableObject {
-    private(set) var transaction: Transaction
-    private let transactionStore: TransactionStore
-    
-    init(amountViewModel: AmountViewModel, transactionStore: TransactionStore) {
-        self.transactionStore = transactionStore
-        self.transaction = Transaction(name: "", from: amountViewModel, in: transactionStore.context!)
-    }
-    
-    func saveTransaction(named name: String) {
-        transaction.name = name
-        transactionStore.save(transaction)
-    }
-}
+
 
 #if DEBUG
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         let amountViewModel = AmountViewModel(originalAmount: "$20.00",
                                               currencyFormatter: .makeCurrencyFormatter(using: .current))
+        let context = NSPersistentContainer.tips.viewContext
         return ForEach(ColorScheme.allCases,
                        id: \.self,
-                       content: ContentView(amountViewModel: amountViewModel)
+                       content: ContentView(amountViewModel: amountViewModel,
+                                            transactionStore: TransactionStoreMock())
+                        .environment(\.managedObjectContext, context)
                         .preferredColorScheme)
     }
 }
