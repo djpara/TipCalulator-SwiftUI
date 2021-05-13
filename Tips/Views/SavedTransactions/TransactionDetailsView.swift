@@ -9,18 +9,34 @@
 import SwiftUI
 
 struct TransactionDetailsView: View {
+    @Environment(\.managedObjectContext) var context
     @Environment(\.colorScheme) var colorScheme
     
     @Binding var transaction: Transaction?
+    
+    @State var showMoreDetails = false
+    
+    let transactionStore: TransactionStore
     let currencyFormatter: NumberFormatter
     
     init(transaction: Binding<Transaction?>,
+         transactionStore: TransactionStore,
          currencyFormatter: NumberFormatter = .makeCurrencyFormatter(using: .current)) {
         _transaction = transaction
+        self.transactionStore = transactionStore
         self.currencyFormatter = currencyFormatter
     }
     
     var body: some View {
+        let moreDetailsEditorBinding = Binding<String>(
+            get: {
+                return transaction?.moreDetails ?? ""
+            },
+            set: {
+                transaction?.moreDetails = $0
+            }
+        )
+        
         let tipPercentage = "\(Int(transaction?.tipPercentage ?? 0))%"
         let tip = (transaction?.tip.stringValue ?? "")
             .convertForCurrency(using: currencyFormatter) ?? ""
@@ -28,12 +44,27 @@ struct TransactionDetailsView: View {
             VStack {
                 HStack {
                     VStack(alignment: .leading, spacing: 8) {
-                        Text(transaction?.name ?? "N/A")
-                            .font(.title2)
+                        HStack {
+                            Text(transaction?.name ?? "N/A")
+                                .font(.title2)
+                            Button(
+                                action: {
+                                    showMoreDetails.toggle()
+                                },
+                                label: {
+                                    Image(systemName: "info.circle")
+                                        .foregroundColor(.blue)
+                                }
+                            )
+                        }
                         if let moreDetails = transaction?.moreDetails {
                             Text(moreDetails)
                                 .font(.caption2)
                                 .foregroundColor(.gray)
+                                .lineLimit(3)
+                                .onTapGesture {
+                                    showMoreDetails.toggle()
+                                }
                         }
                     }
                     Spacer()
@@ -64,6 +95,52 @@ struct TransactionDetailsView: View {
                 .stroke(lineWidth: 0.25)
         )
         .shadow(color: colorScheme == .dark ? .clear : .gray, radius: 8, x: 1, y: 1)
+        .popup(isPresented: showMoreDetails) {
+            VStack {
+                Text("Notes")
+                    .padding([.top])
+                    .font(.title2)
+                Divider()
+                TextEditor(text: moreDetailsEditorBinding)
+                    .font(.caption)
+                    .padding()
+                Divider()
+                HStack {
+                    Spacer()
+                    Button(
+                        action: {
+                            guard let transaction = transaction else { return }
+                            transaction.moreDetails = nil
+                            transactionStore.save(transaction, context: context)
+                            showMoreDetails.toggle()
+                        }, label: {
+                            Text("Delete")
+                                .foregroundColor(.red)
+                        }
+                    )
+                    Spacer()
+                    Divider().frame(height: 32)
+                    Spacer()
+                    Button(
+                        action: {
+                            guard let transaction = transaction else { return }
+                            transactionStore.save(transaction, context: context)
+                            showMoreDetails.toggle()
+                        }, label: {
+                            Text("Save")
+                        }
+                    )
+                    Spacer()
+                }.padding([.bottom], 8)
+            }
+            .background(colorScheme == .dark ? Color.black : Color.white)
+            .cornerRadius(8)
+            .overlay(
+                RoundedRectangle(cornerRadius: 8)
+                    .stroke(lineWidth: 0.25)
+            )
+            .shadow(color: colorScheme == .dark ? .clear : .gray, radius: 8, x: 1, y: 1)
+        }
     }
     
     private func clear() {
@@ -90,7 +167,8 @@ struct HTitleLabelView: View {
 
 struct TransactionDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        let context = TransactionStoreMock().persistentContainer.viewContext
+        let transactionStoreMock = TransactionStoreMock()
+        let context = transactionStoreMock.persistentContainer.viewContext
         let transaction = Transaction(context: context)
         transaction.name = "New Transaction"
         transaction.moreDetails = "Here are some more details about this particular transaction. I was able to split the transaction with a friend quite easily. This was good stuff."
@@ -99,7 +177,8 @@ struct TransactionDetailsView_Previews: PreviewProvider {
         transaction.tip = 5
         transaction.total = "$25.00"
         
-        return TransactionDetailsView(transaction: .constant(transaction))
+        return TransactionDetailsView(transaction: .constant(transaction),
+                                      transactionStore: transactionStoreMock)
             .environment(\.managedObjectContext, context)
     }
 }
