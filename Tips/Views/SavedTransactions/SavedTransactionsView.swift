@@ -63,6 +63,7 @@ struct SavedTransactionsView: View {
     }
 }
 
+#if DEBUG
 struct SavedTransactionsView_Previews: PreviewProvider {
     static var previews: some View {
         let context = NSPersistentContainer.tips.viewContext
@@ -81,3 +82,4 @@ struct SavedTransactionsView_Previews: PreviewProvider {
                         .preferredColorScheme)
     }
 }
+#endif

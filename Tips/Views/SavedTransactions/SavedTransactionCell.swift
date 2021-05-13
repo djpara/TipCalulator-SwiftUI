@@ -47,6 +47,7 @@ struct SavedTransactionCell: View {
     }
 }
 
+#if DEBUG
 struct SavedTransactionCell_Previews: PreviewProvider {
     static var previews: some View {
         let context = NSPersistentContainer.tips.viewContext
@@ -61,3 +62,4 @@ struct SavedTransactionCell_Previews: PreviewProvider {
             .environment(\.managedObjectContext, context)
     }
 }
+#endif

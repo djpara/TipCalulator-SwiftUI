@@ -165,6 +165,7 @@ struct HTitleLabelView: View {
     }
 }
 
+#if DEBUG
 struct TransactionDetailsView_Previews: PreviewProvider {
     static var previews: some View {
         let transactionStoreMock = TransactionStoreMock()
@@ -182,3 +183,4 @@ struct TransactionDetailsView_Previews: PreviewProvider {
             .environment(\.managedObjectContext, context)
     }
 }
+#endif

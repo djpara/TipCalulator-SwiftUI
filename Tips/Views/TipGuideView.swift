@@ -83,6 +83,7 @@ struct ServiceView: View {
     }
 }
 
+#if DEBUG
 struct TipGuideView_Previews: PreviewProvider {
     static var previews: some View {
         let amountViewModel = AmountViewModel(originalAmount: "",
@@ -90,3 +91,4 @@ struct TipGuideView_Previews: PreviewProvider {
         TipGuideView(isPresented: .constant(true), amountViewModel: amountViewModel)
     }
 }
+#endif

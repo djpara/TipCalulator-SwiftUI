@@ -13,6 +13,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        Log.debug(message: "Scene loading...")
         let numberFormatter = NumberFormatter.makeCurrencyFormatter(using: .current)
         let amountViewModel = AmountViewModel(originalAmount: "", currencyFormatter: numberFormatter)
         let contentView = ContentView(amountViewModel: amountViewModel)
@@ -24,6 +25,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             self.window = window
             window.makeKeyAndVisible()
         }
+        Log.debug(message: "Scene loaded")
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
