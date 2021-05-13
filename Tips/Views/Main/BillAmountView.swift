@@ -9,14 +9,15 @@
 import SwiftUI
 
 struct BillAmountView: View {
-    @State var total: String
+    @ObservedObject var amountViewModel: AmountViewModel
     
-    var amountViewModel: AmountViewModel
+    @State var total: String = ""
+    
     var currencyFormatter: NumberFormatter { amountViewModel.currencyFormatter }
     
     init(amountViewModel: AmountViewModel) {
-        self.total = amountViewModel.originalAmount
         self.amountViewModel = amountViewModel
+        self.total = amountViewModel.originalAmount
     }
     
     private func formattedTotal(for double: Double) -> String {

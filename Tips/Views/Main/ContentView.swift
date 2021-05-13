@@ -37,7 +37,7 @@ struct ContentView: View {
     }
     
     var body: some View {
-        let billAmoutView = BillAmountView(amountViewModel: amountViewModel)
+        let billAmountView = BillAmountView(amountViewModel: amountViewModel)
         let calculationCellView = CalculationsCellView(amountViewModel: amountViewModel)
         let tipPercentageSegmentView = TipPercentageSegmentView(amountViewModel: amountViewModel)
         let calculateTotalButton = CalculateTotalButton(amountViewModel: amountViewModel)
@@ -55,7 +55,7 @@ struct ContentView: View {
                             NavigationLink(destination: editTipPercentagesView,
                                            isActive: $showEditTipPercentage) { }
                             LazyVStack {
-                                billAmoutView.padding([.leading, .trailing])
+                                billAmountView.padding([.leading, .trailing])
                                 calculationCellView.padding([.leading, .trailing])
                                 tipPercentageSegmentView.padding([.leading, .trailing])
                                 calculateTotalButton.padding([.leading, .trailing])
