@@ -15,8 +15,11 @@
 		4B146C2224AE276C0093CF56 /* ClearTextFieldModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B146C2124AE276C0093CF56 /* ClearTextFieldModifier.swift */; };
 		4B146C2424AE2C1C0093CF56 /* GoButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B146C2324AE2C1C0093CF56 /* GoButtonModifier.swift */; };
 		4B14BB2A24E5ABD30036C198 /* GoogleAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B14BB2924E5ABD30036C198 /* GoogleAdView.swift */; };
+		4B219BAB265338C1002EBC01 /* SavedTransactionMoreDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B219BAA265338C1002EBC01 /* SavedTransactionMoreDetailsView.swift */; };
+		4B219BAD26533D86002EBC01 /* Transaction+Memento.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B219BAC26533D86002EBC01 /* Transaction+Memento.swift */; };
+		4B219BAF265410F6002EBC01 /* Date+Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B219BAE265410F6002EBC01 /* Date+Components.swift */; };
 		4B232217264C568D00C7B083 /* View+Conditional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B232216264C568D00C7B083 /* View+Conditional.swift */; };
-		4B23221A264C67AC00C7B083 /* TransactionDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B232219264C67AC00C7B083 /* TransactionDetailsView.swift */; };
+		4B23221A264C67AC00C7B083 /* SavedTransactionDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B232219264C67AC00C7B083 /* SavedTransactionDetailsView.swift */; };
 		4B281B3724A87D0000088D2E /* TipConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B281B3624A87D0000088D2E /* TipConfig.swift */; };
 		4B373CB72649C7A500F85A04 /* SaveTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B373CB62649C7A500F85A04 /* SaveTransactionView.swift */; };
 		4B373CBD264AC15E00F85A04 /* StoreFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B373CBC264AC15E00F85A04 /* StoreFactory.swift */; };
@@ -88,8 +91,11 @@
 		4B146C2124AE276C0093CF56 /* ClearTextFieldModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearTextFieldModifier.swift; sourceTree = "<group>"; };
 		4B146C2324AE2C1C0093CF56 /* GoButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoButtonModifier.swift; sourceTree = "<group>"; };
 		4B14BB2924E5ABD30036C198 /* GoogleAdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAdView.swift; sourceTree = "<group>"; };
+		4B219BAA265338C1002EBC01 /* SavedTransactionMoreDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedTransactionMoreDetailsView.swift; sourceTree = "<group>"; };
+		4B219BAC26533D86002EBC01 /* Transaction+Memento.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Transaction+Memento.swift"; path = "Tips/Views/SavedTransactions/Transaction+Memento.swift"; sourceTree = SOURCE_ROOT; };
+		4B219BAE265410F6002EBC01 /* Date+Components.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Components.swift"; sourceTree = "<group>"; };
 		4B232216264C568D00C7B083 /* View+Conditional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Conditional.swift"; sourceTree = "<group>"; };
-		4B232219264C67AC00C7B083 /* TransactionDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetailsView.swift; sourceTree = "<group>"; };
+		4B232219264C67AC00C7B083 /* SavedTransactionDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedTransactionDetailsView.swift; sourceTree = "<group>"; };
 		4B281B3624A87D0000088D2E /* TipConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipConfig.swift; sourceTree = "<group>"; };
 		4B373CB62649C7A500F85A04 /* SaveTransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveTransactionView.swift; sourceTree = "<group>"; };
 		4B373CBC264AC15E00F85A04 /* StoreFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreFactory.swift; sourceTree = "<group>"; };
@@ -208,7 +214,8 @@
 			children = (
 				4B373CC2264B286B00F85A04 /* SavedTransactionsView.swift */,
 				4B373CC4264B300B00F85A04 /* SavedTransactionCell.swift */,
-				4B232219264C67AC00C7B083 /* TransactionDetailsView.swift */,
+				4B232219264C67AC00C7B083 /* SavedTransactionDetailsView.swift */,
+				4B219BAA265338C1002EBC01 /* SavedTransactionMoreDetailsView.swift */,
 			);
 			path = SavedTransactions;
 			sourceTree = "<group>";
@@ -387,6 +394,7 @@
 				4B4330032480AD8600CFA163 /* String+Extensions.swift */,
 				4B146C1924AE08FE0093CF56 /* UIApplication+Extensions.swift */,
 				4B232216264C568D00C7B083 /* View+Conditional.swift */,
+				4B219BAE265410F6002EBC01 /* Date+Components.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -422,6 +430,7 @@
 			children = (
 				4B373CBE264B25B600F85A04 /* Transaction+CoreDataClass.swift */,
 				4B373CBF264B25B600F85A04 /* Transaction+CoreDataProperties.swift */,
+				4B219BAC26533D86002EBC01 /* Transaction+Memento.swift */,
 			);
 			path = Transaction;
 			sourceTree = "<group>";
@@ -654,6 +663,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4BEEAAA92648E38D00E16E7E /* CoreData+Persistence.swift in Sources */,
+				4B219BAD26533D86002EBC01 /* Transaction+Memento.swift in Sources */,
 				4BEEAAAC2648E60600E16E7E /* Log.swift in Sources */,
 				4BF3722C26439F76008E3785 /* TipGuideModel.swift in Sources */,
 				4BEDB40F2496DF0F005F3892 /* CurrencySpelledOut.swift in Sources */,
@@ -665,6 +675,7 @@
 				4B146BD824ACE5FF0093CF56 /* CalculateTotalButton.swift in Sources */,
 				4B373CBD264AC15E00F85A04 /* StoreFactory.swift in Sources */,
 				4BB06DE0264C2BD6008B8C5E /* TransactionStoreMock.swift in Sources */,
+				4B219BAB265338C1002EBC01 /* SavedTransactionMoreDetailsView.swift in Sources */,
 				4BCF89B324EAF21A00349206 /* LoadAdMonitor.swift in Sources */,
 				4BEDB40D2496DEF8005F3892 /* SpellOutCurrency.swift in Sources */,
 				4BED9107247CED640026A4AD /* Double+Extensions.swift in Sources */,
@@ -682,6 +693,7 @@
 				4B0A9FFE24E9961100D150B2 /* CalculationsCellView.swift in Sources */,
 				4B232217264C568D00C7B083 /* View+Conditional.swift in Sources */,
 				4B281B3724A87D0000088D2E /* TipConfig.swift in Sources */,
+				4B219BAF265410F6002EBC01 /* Date+Components.swift in Sources */,
 				4BED9105247CE81E0026A4AD /* NumberFormatter+Extensions.swift in Sources */,
 				4B373CC3264B286B00F85A04 /* SavedTransactionsView.swift in Sources */,
 				4BED90FD247CD01E0026A4AD /* AmountTotalError.swift in Sources */,
@@ -691,7 +703,7 @@
 				4B373CC0264B25B600F85A04 /* Transaction+CoreDataClass.swift in Sources */,
 				4B373CC1264B25B600F85A04 /* Transaction+CoreDataProperties.swift in Sources */,
 				4B552DE9247B80CA00CF15D8 /* ContentView.swift in Sources */,
-				4B23221A264C67AC00C7B083 /* TransactionDetailsView.swift in Sources */,
+				4B23221A264C67AC00C7B083 /* SavedTransactionDetailsView.swift in Sources */,
 				4B146C2424AE2C1C0093CF56 /* GoButtonModifier.swift in Sources */,
 				4B146C2024AE27130093CF56 /* ClearButtonModifier.swift in Sources */,
 			);

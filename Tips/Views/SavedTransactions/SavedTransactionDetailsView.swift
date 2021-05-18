@@ -1,5 +1,5 @@
 //
-//  TransactionDetailsView.swift
+//  SavedTransactionDetailsView.swift
 //  Tips
 //
 //  Created by David Para on 5/12/21.
@@ -8,13 +8,14 @@
 
 import SwiftUI
 
-struct TransactionDetailsView: View {
+struct SavedTransactionDetailsView: View {
     @Environment(\.managedObjectContext) var context
     @Environment(\.colorScheme) var colorScheme
     
     @Binding var transaction: Transaction?
     
     @State var showMoreDetails = false
+    @State var offset = CGSize.zero
     
     let transactionStore: TransactionStore
     let currencyFormatter: NumberFormatter
@@ -28,15 +29,6 @@ struct TransactionDetailsView: View {
     }
     
     var body: some View {
-        let moreDetailsEditorBinding = Binding<String>(
-            get: {
-                return transaction?.moreDetails ?? ""
-            },
-            set: {
-                transaction?.moreDetails = $0
-            }
-        )
-        
         let tipPercentage = "\(Int(transaction?.tipPercentage ?? 0))%"
         let tip = (transaction?.tip.stringValue ?? "")
             .convertForCurrency(using: currencyFormatter) ?? ""
@@ -96,50 +88,9 @@ struct TransactionDetailsView: View {
         )
         .shadow(color: colorScheme == .dark ? .clear : .gray, radius: 8, x: 1, y: 1)
         .popup(isPresented: showMoreDetails) {
-            VStack {
-                Text("Notes")
-                    .padding([.top])
-                    .font(.title2)
-                Divider()
-                TextEditor(text: moreDetailsEditorBinding)
-                    .font(.caption)
-                    .padding()
-                Divider()
-                HStack {
-                    Spacer()
-                    Button(
-                        action: {
-                            guard let transaction = transaction else { return }
-                            transaction.moreDetails = nil
-                            transactionStore.save(transaction, context: context)
-                            showMoreDetails.toggle()
-                        }, label: {
-                            Text("Delete")
-                                .foregroundColor(.red)
-                        }
-                    )
-                    Spacer()
-                    Divider().frame(height: 32)
-                    Spacer()
-                    Button(
-                        action: {
-                            guard let transaction = transaction else { return }
-                            transactionStore.save(transaction, context: context)
-                            showMoreDetails.toggle()
-                        }, label: {
-                            Text("Save")
-                        }
-                    )
-                    Spacer()
-                }.padding([.bottom], 8)
-            }
-            .background(colorScheme == .dark ? Color.black : Color.white)
-            .cornerRadius(8)
-            .overlay(
-                RoundedRectangle(cornerRadius: 8)
-                    .stroke(lineWidth: 0.25)
-            )
-            .shadow(color: colorScheme == .dark ? .clear : .gray, radius: 8, x: 1, y: 1)
+            SavedTransactionMoreDetailsView(showMoreDetails: $showMoreDetails,
+                                       transactionStore: transactionStore,
+                                       transaction: transaction)
         }
     }
     
@@ -178,7 +129,7 @@ struct TransactionDetailsView_Previews: PreviewProvider {
         transaction.tip = 5
         transaction.total = "$25.00"
         
-        return TransactionDetailsView(transaction: .constant(transaction),
+        return SavedTransactionDetailsView(transaction: .constant(transaction),
                                       transactionStore: transactionStoreMock)
             .environment(\.managedObjectContext, context)
     }

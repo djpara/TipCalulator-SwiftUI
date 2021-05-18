@@ -18,19 +18,43 @@ struct SavedTransactionCell: View {
     }
     
     var body: some View {
-        HStack {
-            VStack(alignment: .leading) {
+        let dateBackgroundColor: Color
+        let daySince = Calendar(identifier: .gregorian)
+            .dateComponents([.day], from: transaction.dateAdded ?? Date(), to: Date()).day ?? 0
+        if daySince > 10 {
+            dateBackgroundColor = .red
+        } else if daySince > 5 {
+            dateBackgroundColor = .yellow
+        } else {
+            dateBackgroundColor = .green
+        }
+        
+        return HStack(spacing: 0) {
+            HStack(spacing: 0) {
+                Text(transaction.dateAdded ?? Date(), style: .date)
+                    .font(.caption)
+                    .foregroundColor(.white)
+                    .multilineTextAlignment(.center)
+                    .rotationEffect(.degrees(-90))
+                    .fixedSize()
+                    .frame(width: 32)
+                Divider()
+            }
+            .background(dateBackgroundColor)
+            
+            VStack(alignment: .leading, spacing: 0) {
                 Text(transaction.name ?? "N/A")
                     .font(.title2)
-                    .padding([.leading, .top, .trailing])
+                    .padding()
                     .lineLimit(1)
                 Divider()
                 HStack {
-                    Text(transaction.dateAdded ?? Date(), style: .date)
+                    Text(transaction.moreDetails ?? "No details")
+                        .lineLimit(1)
                         .font(.caption)
                         .foregroundColor(.gray)
                         .multilineTextAlignment(.leading)
-                        .padding([.leading])
+                        .padding([.leading, .trailing])
                     Spacer()
                     Text(transaction.total ?? "$0.00")
                         .padding([.trailing])

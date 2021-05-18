@@ -56,7 +56,7 @@ struct SavedTransactionsView: View {
                alignment: .center,
                direction: .bottom,
                content: {
-                TransactionDetailsView(transaction: $selectedTransaction,
+                SavedTransactionDetailsView(transaction: $selectedTransaction,
                                        transactionStore: transactionStore)
                     .frame(width: 300, alignment: .center)
                })
