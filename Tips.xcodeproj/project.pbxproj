@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -17,13 +17,15 @@
 		4B14BB2A24E5ABD30036C198 /* GoogleAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B14BB2924E5ABD30036C198 /* GoogleAdView.swift */; };
 		4B219BAB265338C1002EBC01 /* SavedTransactionMoreDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B219BAA265338C1002EBC01 /* SavedTransactionMoreDetailsView.swift */; };
 		4B219BAF265410F6002EBC01 /* Date+Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B219BAE265410F6002EBC01 /* Date+Components.swift */; };
+		4B219BBC265492AE002EBC01 /* Transaction+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B219BBA265492AE002EBC01 /* Transaction+CoreDataClass.swift */; };
+		4B219BBD265492AE002EBC01 /* Transaction+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B219BBB265492AE002EBC01 /* Transaction+CoreDataProperties.swift */; };
+		4B219BC026549342002EBC01 /* KeyboardToolbar in Frameworks */ = {isa = PBXBuildFile; productRef = 4B219BBF26549342002EBC01 /* KeyboardToolbar */; };
+		4B219BC226554C70002EBC01 /* KeyboardToolbarItem+ButtonText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B219BC126554C70002EBC01 /* KeyboardToolbarItem+ButtonText.swift */; };
 		4B232217264C568D00C7B083 /* View+Conditional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B232216264C568D00C7B083 /* View+Conditional.swift */; };
 		4B23221A264C67AC00C7B083 /* SavedTransactionDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B232219264C67AC00C7B083 /* SavedTransactionDetailsView.swift */; };
 		4B281B3724A87D0000088D2E /* TipConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B281B3624A87D0000088D2E /* TipConfig.swift */; };
 		4B373CB72649C7A500F85A04 /* SaveTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B373CB62649C7A500F85A04 /* SaveTransactionView.swift */; };
 		4B373CBD264AC15E00F85A04 /* StoreFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B373CBC264AC15E00F85A04 /* StoreFactory.swift */; };
-		4B373CC0264B25B600F85A04 /* Transaction+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B373CBE264B25B600F85A04 /* Transaction+CoreDataClass.swift */; };
-		4B373CC1264B25B600F85A04 /* Transaction+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B373CBF264B25B600F85A04 /* Transaction+CoreDataProperties.swift */; };
 		4B373CC3264B286B00F85A04 /* SavedTransactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B373CC2264B286B00F85A04 /* SavedTransactionsView.swift */; };
 		4B373CC5264B300B00F85A04 /* SavedTransactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B373CC4264B300B00F85A04 /* SavedTransactionCell.swift */; };
 		4B4330042480AD8600CFA163 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4330032480AD8600CFA163 /* String+Extensions.swift */; };
@@ -92,13 +94,14 @@
 		4B14BB2924E5ABD30036C198 /* GoogleAdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAdView.swift; sourceTree = "<group>"; };
 		4B219BAA265338C1002EBC01 /* SavedTransactionMoreDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedTransactionMoreDetailsView.swift; sourceTree = "<group>"; };
 		4B219BAE265410F6002EBC01 /* Date+Components.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Components.swift"; sourceTree = "<group>"; };
+		4B219BBA265492AE002EBC01 /* Transaction+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Transaction+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		4B219BBB265492AE002EBC01 /* Transaction+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Transaction+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		4B219BC126554C70002EBC01 /* KeyboardToolbarItem+ButtonText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyboardToolbarItem+ButtonText.swift"; sourceTree = "<group>"; };
 		4B232216264C568D00C7B083 /* View+Conditional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Conditional.swift"; sourceTree = "<group>"; };
 		4B232219264C67AC00C7B083 /* SavedTransactionDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedTransactionDetailsView.swift; sourceTree = "<group>"; };
 		4B281B3624A87D0000088D2E /* TipConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipConfig.swift; sourceTree = "<group>"; };
 		4B373CB62649C7A500F85A04 /* SaveTransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveTransactionView.swift; sourceTree = "<group>"; };
 		4B373CBC264AC15E00F85A04 /* StoreFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreFactory.swift; sourceTree = "<group>"; };
-		4B373CBE264B25B600F85A04 /* Transaction+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Transaction+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
-		4B373CBF264B25B600F85A04 /* Transaction+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Transaction+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		4B373CC2264B286B00F85A04 /* SavedTransactionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedTransactionsView.swift; sourceTree = "<group>"; };
 		4B373CC4264B300B00F85A04 /* SavedTransactionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedTransactionCell.swift; sourceTree = "<group>"; };
 		4B4330032480AD8600CFA163 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
@@ -154,6 +157,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4BEE58D3257953600050385D /* Pods_Tips.framework in Frameworks */,
+				4B219BC026549342002EBC01 /* KeyboardToolbar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,6 +197,15 @@
 				4BEEAAB726497E3F00E16E7E /* Popup.swift */,
 			);
 			path = ViewModifiers;
+			sourceTree = "<group>";
+		};
+		4B219BB426549272002EBC01 /* Transaction */ = {
+			isa = PBXGroup;
+			children = (
+				4B219BBA265492AE002EBC01 /* Transaction+CoreDataClass.swift */,
+				4B219BBB265492AE002EBC01 /* Transaction+CoreDataProperties.swift */,
+			);
+			path = Transaction;
 			sourceTree = "<group>";
 		};
 		4B232218264C572700C7B083 /* Main */ = {
@@ -393,6 +406,7 @@
 				4B146C1924AE08FE0093CF56 /* UIApplication+Extensions.swift */,
 				4B232216264C568D00C7B083 /* View+Conditional.swift */,
 				4B219BAE265410F6002EBC01 /* Date+Components.swift */,
+				4B219BC126554C70002EBC01 /* KeyboardToolbarItem+ButtonText.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -408,7 +422,7 @@
 		4BEEAAA42648DA7100E16E7E /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				4BEEAAB52648F5C400E16E7E /* Transaction */,
+				4B219BB426549272002EBC01 /* Transaction */,
 				4BEEAAA52648DCC300E16E7E /* Tips.xcdatamodeld */,
 				4BEEAAA82648E38D00E16E7E /* CoreData+Persistence.swift */,
 			);
@@ -421,15 +435,6 @@
 				4BEEAAAB2648E60600E16E7E /* Log.swift */,
 			);
 			path = Debugging;
-			sourceTree = "<group>";
-		};
-		4BEEAAB52648F5C400E16E7E /* Transaction */ = {
-			isa = PBXGroup;
-			children = (
-				4B373CBE264B25B600F85A04 /* Transaction+CoreDataClass.swift */,
-				4B373CBF264B25B600F85A04 /* Transaction+CoreDataProperties.swift */,
-			);
-			path = Transaction;
 			sourceTree = "<group>";
 		};
 		554203A0A40DA1E9104E33BE /* Pods */ = {
@@ -473,6 +478,9 @@
 			dependencies = (
 			);
 			name = Tips;
+			packageProductDependencies = (
+				4B219BBF26549342002EBC01 /* KeyboardToolbar */,
+			);
 			productName = Tips;
 			productReference = 4B552DE1247B80CA00CF15D8 /* Tips: Tip Calculator.app */;
 			productType = "com.apple.product-type.application";
@@ -547,6 +555,9 @@
 				Base,
 			);
 			mainGroup = 4B552DD8247B80CA00CF15D8;
+			packageReferences = (
+				4B219BBE26549342002EBC01 /* XCRemoteSwiftPackageReference "KeyboardToolbar" */,
+			);
 			productRefGroup = 4B552DE2247B80CA00CF15D8 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -669,6 +680,7 @@
 				4B552DE7247B80CA00CF15D8 /* SceneDelegate.swift in Sources */,
 				4BDE9A1924893F51006B78D8 /* Tip.swift in Sources */,
 				4B146BD824ACE5FF0093CF56 /* CalculateTotalButton.swift in Sources */,
+				4B219BBC265492AE002EBC01 /* Transaction+CoreDataClass.swift in Sources */,
 				4B373CBD264AC15E00F85A04 /* StoreFactory.swift in Sources */,
 				4BB06DE0264C2BD6008B8C5E /* TransactionStoreMock.swift in Sources */,
 				4B219BAB265338C1002EBC01 /* SavedTransactionMoreDetailsView.swift in Sources */,
@@ -676,6 +688,7 @@
 				4BEDB40D2496DEF8005F3892 /* SpellOutCurrency.swift in Sources */,
 				4BED9107247CED640026A4AD /* Double+Extensions.swift in Sources */,
 				4BB06DDC264C2726008B8C5E /* SaveTransactionViewModel.swift in Sources */,
+				4B219BBD265492AE002EBC01 /* Transaction+CoreDataProperties.swift in Sources */,
 				4B4330042480AD8600CFA163 /* String+Extensions.swift in Sources */,
 				4B373CB72649C7A500F85A04 /* SaveTransactionView.swift in Sources */,
 				4B373CC5264B300B00F85A04 /* SavedTransactionCell.swift in Sources */,
@@ -691,13 +704,12 @@
 				4B281B3724A87D0000088D2E /* TipConfig.swift in Sources */,
 				4B219BAF265410F6002EBC01 /* Date+Components.swift in Sources */,
 				4BED9105247CE81E0026A4AD /* NumberFormatter+Extensions.swift in Sources */,
+				4B219BC226554C70002EBC01 /* KeyboardToolbarItem+ButtonText.swift in Sources */,
 				4B373CC3264B286B00F85A04 /* SavedTransactionsView.swift in Sources */,
 				4BED90FD247CD01E0026A4AD /* AmountTotalError.swift in Sources */,
 				4B14BB2A24E5ABD30036C198 /* GoogleAdView.swift in Sources */,
 				4BEEAAB826497E3F00E16E7E /* Popup.swift in Sources */,
 				4BEEAAA72648DCC300E16E7E /* Tips.xcdatamodeld in Sources */,
-				4B373CC0264B25B600F85A04 /* Transaction+CoreDataClass.swift in Sources */,
-				4B373CC1264B25B600F85A04 /* Transaction+CoreDataProperties.swift in Sources */,
 				4B552DE9247B80CA00CF15D8 /* ContentView.swift in Sources */,
 				4B23221A264C67AC00C7B083 /* SavedTransactionDetailsView.swift in Sources */,
 				4B146C2424AE2C1C0093CF56 /* GoButtonModifier.swift in Sources */,
@@ -1076,6 +1088,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4B219BBE26549342002EBC01 /* XCRemoteSwiftPackageReference "KeyboardToolbar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/cameronshemilt/KeyboardToolbar";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4B219BBF26549342002EBC01 /* KeyboardToolbar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4B219BBE26549342002EBC01 /* XCRemoteSwiftPackageReference "KeyboardToolbar" */;
+			productName = KeyboardToolbar;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		4BEEAAA52648DCC300E16E7E /* Tips.xcdatamodeld */ = {

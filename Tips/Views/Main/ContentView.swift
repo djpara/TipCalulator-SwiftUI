@@ -7,6 +7,7 @@
 //
 
 import CoreData
+import KeyboardToolbar
 import SwiftUI
 
 struct ContentView: View {
@@ -115,6 +116,7 @@ struct ContentView: View {
         }.onChange(of: self.amountViewModel.originalAmount) { value in
             amountViewModel.calculate()
         }
+        .keyboardToolbar([.withDoneLabel])
     }
     
     private func makeSaveTransactionView() -> SaveTransactionView {
