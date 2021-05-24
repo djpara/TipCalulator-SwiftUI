@@ -89,8 +89,8 @@ struct SavedTransactionDetailsView: View {
         .shadow(color: colorScheme == .dark ? .clear : .gray, radius: 8, x: 1, y: 1)
         .popup(isPresented: showMoreDetails) {
             SavedTransactionMoreDetailsView(showMoreDetails: $showMoreDetails,
-                                       transactionStore: transactionStore,
-                                       transaction: transaction)
+                                            transactionStore: transactionStore,
+                                            transaction: transaction)
         }
     }
     

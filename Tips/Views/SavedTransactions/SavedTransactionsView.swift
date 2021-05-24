@@ -13,7 +13,6 @@ struct SavedTransactionsView: View {
     @Environment(\.managedObjectContext) var context
     @Environment(\.colorScheme) var colorScheme
     
-    @State private var showDetails = false
     @State private var selectedTransaction: Transaction? = nil
     
     var transactionStore: TransactionStore
@@ -35,7 +34,6 @@ struct SavedTransactionsView: View {
                         SavedTransactionCell(transaction: transaction)
                         Button(action: {
                             selectedTransaction = transaction
-                            showDetails.toggle()
                         }, label: {
                             Image(systemName: "info.circle").foregroundColor(.blue)
                         })
@@ -51,13 +49,14 @@ struct SavedTransactionsView: View {
                 }
             }
             .navigationTitle(Text("Saved Transactions"))
+            .navigationBarTitleDisplayMode(.inline)
         }
         .popup(isPresented: selectedTransaction != nil,
                alignment: .center,
                direction: .bottom,
                content: {
                 SavedTransactionDetailsView(transaction: $selectedTransaction,
-                                       transactionStore: transactionStore)
+                                            transactionStore: transactionStore)
                     .frame(width: 300, alignment: .center)
                })
     }
