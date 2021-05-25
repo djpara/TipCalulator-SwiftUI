@@ -14,6 +14,7 @@ struct SavedTransactionsView: View {
     @Environment(\.colorScheme) var colorScheme
     
     @State private var selectedTransaction: Transaction? = nil
+    @State private var indexToDelete: IndexSet? = nil
     
     var transactionStore: TransactionStore
     
@@ -44,8 +45,16 @@ struct SavedTransactionsView: View {
                     .background(colorScheme == .dark ? Color.black : Color.white)
                 }
                 .onDelete {
-                    transactionStore
-                        .delete(at: $0, in: transactions, context: context)
+                    indexToDelete = $0
+                }
+                .alert(isPresented: .constant(indexToDelete != nil)) {
+                    Alert(title: Text("Delete Transaction"),
+                          message: Text("Are you sure you want to delete this transaction?"),
+                          primaryButton: .destructive(Text("Delete")) {
+                            transactionStore.delete(at: indexToDelete!, in: transactions, context: context)
+                            indexToDelete = nil
+                          },
+                          secondaryButton: .cancel(Text("Cancel")))
                 }
             }
             .navigationTitle(Text("Saved Transactions"))
