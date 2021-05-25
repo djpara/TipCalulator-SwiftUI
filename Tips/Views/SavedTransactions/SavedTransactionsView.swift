@@ -31,7 +31,7 @@ struct SavedTransactionsView: View {
             List {
                 ForEach(transactions) { transaction in
                     HStack {
-                        SavedTransactionCell(transaction: transaction)
+                        SavedTransactionCell(transaction: .constant(transaction))
                         Button(action: {
                             selectedTransaction = transaction
                         }, label: {

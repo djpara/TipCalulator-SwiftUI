@@ -12,7 +12,7 @@ import SwiftUI
 struct SavedTransactionCell: View {
     @Environment(\.colorScheme) var colorScheme
     
-    var transaction: Transaction
+    @Binding var transaction: Transaction
     private var showShadow: Bool {
         colorScheme == .light
     }
@@ -82,7 +82,7 @@ struct SavedTransactionCell_Previews: PreviewProvider {
         transaction.tip = 5
         transaction.total = "$25.00"
         
-        return SavedTransactionCell(transaction: transaction)
+        return SavedTransactionCell(transaction: .constant(transaction))
             .environment(\.managedObjectContext, context)
     }
 }

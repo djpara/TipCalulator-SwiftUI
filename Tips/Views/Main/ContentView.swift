@@ -104,7 +104,7 @@ struct ContentView: View {
                 makeSaveTransactionView()
                     .frame(width: 250)
             }
-            loadAdMonitor.bannerView.frame(height: 60)
+//            loadAdMonitor.bannerView.frame(height: 60)
         }.onAppear {
             UITableView.appearance().tableFooterView = UIView()
             
