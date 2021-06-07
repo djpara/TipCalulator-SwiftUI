@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -19,7 +19,6 @@
 		4B219BAF265410F6002EBC01 /* Date+Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B219BAE265410F6002EBC01 /* Date+Components.swift */; };
 		4B219BBC265492AE002EBC01 /* Transaction+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B219BBA265492AE002EBC01 /* Transaction+CoreDataClass.swift */; };
 		4B219BBD265492AE002EBC01 /* Transaction+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B219BBB265492AE002EBC01 /* Transaction+CoreDataProperties.swift */; };
-		4B219BC026549342002EBC01 /* KeyboardToolbar in Frameworks */ = {isa = PBXBuildFile; productRef = 4B219BBF26549342002EBC01 /* KeyboardToolbar */; };
 		4B219BC226554C70002EBC01 /* KeyboardToolbarItem+ButtonText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B219BC126554C70002EBC01 /* KeyboardToolbarItem+ButtonText.swift */; };
 		4B232217264C568D00C7B083 /* View+Conditional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B232216264C568D00C7B083 /* View+Conditional.swift */; };
 		4B23221A264C67AC00C7B083 /* SavedTransactionDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B232219264C67AC00C7B083 /* SavedTransactionDetailsView.swift */; };
@@ -61,6 +60,12 @@
 		4BEEAAB826497E3F00E16E7E /* Popup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BEEAAB726497E3F00E16E7E /* Popup.swift */; };
 		4BF3722826439B12008E3785 /* TipGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF3722726439B12008E3785 /* TipGuideView.swift */; };
 		4BF3722C26439F76008E3785 /* TipGuideModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF3722B26439F76008E3785 /* TipGuideModel.swift */; };
+		4BF6C58A266E7C07004B49E6 /* DeleteTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF6C589266E7C07004B49E6 /* DeleteTransactionView.swift */; };
+		4BF6C591266E9251004B49E6 /* KeyboardToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF6C58C266E9251004B49E6 /* KeyboardToolbar.swift */; };
+		4BF6C592266E9251004B49E6 /* KeyboardResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF6C58D266E9251004B49E6 /* KeyboardResponder.swift */; };
+		4BF6C593266E9251004B49E6 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF6C58E266E9251004B49E6 /* ViewExtension.swift */; };
+		4BF6C594266E9251004B49E6 /* KeyboardToolbarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF6C58F266E9251004B49E6 /* KeyboardToolbarItem.swift */; };
+		4BF6C595266E9251004B49E6 /* KeyboardToolbarStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF6C590266E9251004B49E6 /* KeyboardToolbarStyle.swift */; };
 		FE7FCA308613EE236A775D71 /* Pods_TipsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD791560B91218E50B3A477E /* Pods_TipsTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -143,6 +148,12 @@
 		4BEEAAB726497E3F00E16E7E /* Popup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Popup.swift; sourceTree = "<group>"; };
 		4BF3722726439B12008E3785 /* TipGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipGuideView.swift; sourceTree = "<group>"; };
 		4BF3722B26439F76008E3785 /* TipGuideModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipGuideModel.swift; sourceTree = "<group>"; };
+		4BF6C589266E7C07004B49E6 /* DeleteTransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteTransactionView.swift; sourceTree = "<group>"; };
+		4BF6C58C266E9251004B49E6 /* KeyboardToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardToolbar.swift; sourceTree = "<group>"; };
+		4BF6C58D266E9251004B49E6 /* KeyboardResponder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardResponder.swift; sourceTree = "<group>"; };
+		4BF6C58E266E9251004B49E6 /* ViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
+		4BF6C58F266E9251004B49E6 /* KeyboardToolbarItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardToolbarItem.swift; sourceTree = "<group>"; };
+		4BF6C590266E9251004B49E6 /* KeyboardToolbarStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardToolbarStyle.swift; sourceTree = "<group>"; };
 		522E46D2489BA0E95DDCB4FA /* Pods-Tips.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tips.debug.xcconfig"; path = "Target Support Files/Pods-Tips/Pods-Tips.debug.xcconfig"; sourceTree = "<group>"; };
 		66D4653B2647859DE71B4F23 /* Pods-TipsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TipsTests.release.xcconfig"; path = "Target Support Files/Pods-TipsTests/Pods-TipsTests.release.xcconfig"; sourceTree = "<group>"; };
 		90133BB535BF5D43BA0B86F8 /* Pods-TipsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TipsTests.debug.xcconfig"; path = "Target Support Files/Pods-TipsTests/Pods-TipsTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -157,7 +168,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4BEE58D3257953600050385D /* Pods_Tips.framework in Frameworks */,
-				4B219BC026549342002EBC01 /* KeyboardToolbar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,6 +237,7 @@
 				4B373CC4264B300B00F85A04 /* SavedTransactionCell.swift */,
 				4B232219264C67AC00C7B083 /* SavedTransactionDetailsView.swift */,
 				4B219BAA265338C1002EBC01 /* SavedTransactionMoreDetailsView.swift */,
+				4BF6C589266E7C07004B49E6 /* DeleteTransactionView.swift */,
 			);
 			path = SavedTransactions;
 			sourceTree = "<group>";
@@ -277,6 +288,7 @@
 				4B146C1B24AE0D5D0093CF56 /* Storyboards */,
 				4BDE9A0C24885B5A006B78D8 /* ViewModels */,
 				4B146C1E24AE26E80093CF56 /* ViewModifiers */,
+				4BF6C58B266E9251004B49E6 /* KeyboardToolbar */,
 				4B552E16247B814700CF15D8 /* Views */,
 			);
 			path = Tips;
@@ -437,6 +449,18 @@
 			path = Debugging;
 			sourceTree = "<group>";
 		};
+		4BF6C58B266E9251004B49E6 /* KeyboardToolbar */ = {
+			isa = PBXGroup;
+			children = (
+				4BF6C58C266E9251004B49E6 /* KeyboardToolbar.swift */,
+				4BF6C58D266E9251004B49E6 /* KeyboardResponder.swift */,
+				4BF6C58E266E9251004B49E6 /* ViewExtension.swift */,
+				4BF6C58F266E9251004B49E6 /* KeyboardToolbarItem.swift */,
+				4BF6C590266E9251004B49E6 /* KeyboardToolbarStyle.swift */,
+			);
+			path = KeyboardToolbar;
+			sourceTree = "<group>";
+		};
 		554203A0A40DA1E9104E33BE /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -479,7 +503,6 @@
 			);
 			name = Tips;
 			packageProductDependencies = (
-				4B219BBF26549342002EBC01 /* KeyboardToolbar */,
 			);
 			productName = Tips;
 			productReference = 4B552DE1247B80CA00CF15D8 /* Tips: Tip Calculator.app */;
@@ -556,7 +579,6 @@
 			);
 			mainGroup = 4B552DD8247B80CA00CF15D8;
 			packageReferences = (
-				4B219BBE26549342002EBC01 /* XCRemoteSwiftPackageReference "KeyboardToolbar" */,
 			);
 			productRefGroup = 4B552DE2247B80CA00CF15D8 /* Products */;
 			projectDirPath = "";
@@ -676,14 +698,20 @@
 				4BEDB40F2496DF0F005F3892 /* CurrencySpelledOut.swift in Sources */,
 				4B552DE5247B80CA00CF15D8 /* AppDelegate.swift in Sources */,
 				4B146C1A24AE08FE0093CF56 /* UIApplication+Extensions.swift in Sources */,
+				4BF6C594266E9251004B49E6 /* KeyboardToolbarItem.swift in Sources */,
+				4BF6C593266E9251004B49E6 /* ViewExtension.swift in Sources */,
 				4B146C2224AE276C0093CF56 /* ClearTextFieldModifier.swift in Sources */,
 				4B552DE7247B80CA00CF15D8 /* SceneDelegate.swift in Sources */,
+				4BF6C595266E9251004B49E6 /* KeyboardToolbarStyle.swift in Sources */,
+				4BF6C591266E9251004B49E6 /* KeyboardToolbar.swift in Sources */,
 				4BDE9A1924893F51006B78D8 /* Tip.swift in Sources */,
 				4B146BD824ACE5FF0093CF56 /* CalculateTotalButton.swift in Sources */,
 				4B219BBC265492AE002EBC01 /* Transaction+CoreDataClass.swift in Sources */,
+				4BF6C58A266E7C07004B49E6 /* DeleteTransactionView.swift in Sources */,
 				4B373CBD264AC15E00F85A04 /* StoreFactory.swift in Sources */,
 				4BB06DE0264C2BD6008B8C5E /* TransactionStoreMock.swift in Sources */,
 				4B219BAB265338C1002EBC01 /* SavedTransactionMoreDetailsView.swift in Sources */,
+				4BF6C592266E9251004B49E6 /* KeyboardResponder.swift in Sources */,
 				4BCF89B324EAF21A00349206 /* LoadAdMonitor.swift in Sources */,
 				4BEDB40D2496DEF8005F3892 /* SpellOutCurrency.swift in Sources */,
 				4BED9107247CED640026A4AD /* Double+Extensions.swift in Sources */,
@@ -914,7 +942,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.1.1;
+				MARKETING_VERSION = 4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.BigHeartApps.Tips;
 				PRODUCT_NAME = "Tips: Tip Calculator";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -950,7 +978,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.1.1;
+				MARKETING_VERSION = 4.0;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.BigHeartApps.Tips;
 				PRODUCT_NAME = "Tips: Tip Calculator";
@@ -1088,25 +1116,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		4B219BBE26549342002EBC01 /* XCRemoteSwiftPackageReference "KeyboardToolbar" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/cameronshemilt/KeyboardToolbar";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.1.2;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		4B219BBF26549342002EBC01 /* KeyboardToolbar */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 4B219BBE26549342002EBC01 /* XCRemoteSwiftPackageReference "KeyboardToolbar" */;
-			productName = KeyboardToolbar;
-		};
-/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		4BEEAAA52648DCC300E16E7E /* Tips.xcdatamodeld */ = {

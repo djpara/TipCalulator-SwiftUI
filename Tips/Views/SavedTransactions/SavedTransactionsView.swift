@@ -15,6 +15,7 @@ struct SavedTransactionsView: View {
     
     @State private var selectedTransaction: Transaction? = nil
     @State private var indexToDelete: IndexSet? = nil
+    @State private var showDeleteAlert = false
     
     var transactionStore: TransactionStore
     
@@ -46,15 +47,24 @@ struct SavedTransactionsView: View {
                 }
                 .onDelete {
                     indexToDelete = $0
+                    showDeleteAlert.toggle()
                 }
-                .alert(isPresented: .constant(indexToDelete != nil)) {
-                    Alert(title: Text("Delete Transaction"),
-                          message: Text("Are you sure you want to delete this transaction?"),
-                          primaryButton: .destructive(Text("Delete")) {
-                            transactionStore.delete(at: indexToDelete!, in: transactions, context: context)
-                            indexToDelete = nil
-                          },
-                          secondaryButton: .cancel(Text("Cancel")))
+//                .alert(isPresented: $showDeleteAlert) {
+//                    Alert(title: Text("Delete Transaction"),
+//                          message: Text("Are you sure you want to delete this transaction?"),
+//                          primaryButton: .destructive(Text("Delete")) {
+//                            transactionStore.delete(at: indexToDelete!, in: transactions, context: context)
+//                            indexToDelete = nil
+//                            showDeleteAlert.toggle()
+//                          },
+//                          secondaryButton: .cancel(Text("Cancel")))
+//                }
+            }
+            .popup(isPresented: showDeleteAlert) {
+                DeleteTransactionView(isPresented: $showDeleteAlert) { delete in
+                    showDeleteAlert.toggle()
+                    guard delete, let indexToDelete = indexToDelete else { return }
+                    transactionStore.delete(at: indexToDelete, in: transactions, context: context)
                 }
             }
             .navigationTitle(Text("Saved Transactions"))

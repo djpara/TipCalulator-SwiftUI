@@ -7,7 +7,6 @@
 //
 
 import CoreData
-import KeyboardToolbar
 import SwiftUI
 
 struct ContentView: View {
@@ -131,7 +130,7 @@ struct ContentView: View {
 #if DEBUG
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        let amountViewModel = AmountViewModel(originalAmount: "$20.00",
+        let amountViewModel = AmountViewModel(originalAmount: "",
                                               currencyFormatter: .makeCurrencyFormatter(using: .current))
         let context = NSPersistentContainer.tips.viewContext
         return ForEach(ColorScheme.allCases,

@@ -6,7 +6,6 @@
 //  Copyright © 2021 David Para. All rights reserved.
 //
 
-import KeyboardToolbar
 import UIKit
 
 extension KeyboardToolbarItem {
